@@ -25,6 +25,7 @@ app.use(bodyParser.json());
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.set('port', 80);
+app.use(express.static('public'));
 
 //just shows any incoming gets
 app.get('/get',function(req,res){
