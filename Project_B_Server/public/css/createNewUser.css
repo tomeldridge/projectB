@@ -1,0 +1,10 @@
+body{
+	background-color : lightslategrey;
+}
+
+form{
+	background-color : lightgrey;
+	border-radius : 5px; 
+	border-color : darkslategrey;
+	border-style : ridge;
+}
