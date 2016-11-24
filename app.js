@@ -64,7 +64,7 @@ app.get('/viewanimal', function(req,res){
   res.render('viewanimal');
 });
 
-app.post('/browseanimals',function(req,res,next){ 
+app.post('/populateAnimals',function(req,res,next){ 
 
   var rBody= req.body;
 

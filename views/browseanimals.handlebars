@@ -22,7 +22,7 @@
 			var req = new XMLHttpRequest();
 			var payload = {};
 			payload.animalReq = document.getElementById('animalsToView').value;
-			req.open('POST', '/browseanimals', true);
+			req.open('POST', '/populateAnimals', true);
 			req.setRequestHeader('Content-Type', 'application/json');
 			req.addEventListener('load',function(){
 				if(req.status >= 200 && req.status < 400){
