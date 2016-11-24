@@ -1,1 +1,90 @@
 <link rel="stylesheet" type= "text/css" href="/stylesheets/submitanimal.css"/>
+<form>
+
+<fieldset>
+<div>
+<hr>
+<em><b>Please enter the necessary information for the found animal below</b></em>
+<hr><br>
+Animal Type:
+   	<select name="submitAnimalType" id="submitAnimalType">
+		<option value="dog" id="submitDog">Dog</option> 
+		<option value="cat" id="submitCat">Cat</option> 
+		<option value="horse" id="submitHorse">Horse</option>
+		<option value="bird" id="submitBird">Bird</option>
+	</select>		
+</div><br>
+
+<div>
+<input type="text" placeholder="Animals Current Address" name="newAnimalAddress" id="newAnimalAddress"><br>
+<input type="text" placeholder="Animals Current City" name="newAnimalCity" id="newAnimalCity">
+   	<select name="State" id="newAnimalState">
+		<option value="al">Alabama</option> 
+		<option value="ak">Alaska</option> 
+		<option value="az">Arizona</option>
+		<option value="ar">Arkansas</optio>
+		<option value="ca">California</option>
+		<option value="co">Colorado</option>
+		<option value="ct">Connecticut</option>
+		<option value="de">Delaware</option>
+		<option value="dc">District Of Columbia</option>
+		<option value="fl">Florida</option>
+		<option value="ga">Georgia</option>
+		<option value="hi">Hawaii</option>
+		<option value="id">Idaho</option>
+		<option value="il">Illinois</option>
+		<option value="in">Indiana</option>
+		<option value="ia">Iowa</option>
+		<option value="ks">Kansas</option>
+		<option value="ky">Kentucky</option>
+		<option value="la">Louisiana</option>
+		<option value="me">Maine</option>
+		<option value="md">Maryland</option>
+		<option value="ma">Massachusetts</option>
+		<option value="mi">Michigan</option>
+		<option value="mn">Minnesota</option>
+		<option value="ms">Mississippi</option>
+		<option value="mo">Missouri</option>
+		<option value="mt">Montana</option>
+		<option value="ne">Nebraska</option>
+		<option value="nv">Nevada</option>
+		<option value="nh">New Hampshire</option>
+		<option value="nj">New Jersey</option>
+		<option value="nm">New Mexico</option>
+		<option value="ny">New York</option>
+		<option value="nc">North Carolina</option>
+		<option value="nd">North Dakota</option>
+		<option value="oh">Ohio</option>
+		<option value="ok">Oklahoma</option>
+		<option value="or" selected>Oregon</option>
+		<option value="pa">Pennsylvania</option>
+		<option value="ri">Rhode Island</option>
+		<option value="sc">South Carolina</option>
+		<option value="sd">South Dakota</option>
+		<option value="tn">Tennessee</option>
+		<option value="tx">Texas</option>
+		<option value="ut">Utah</option>
+		<option value="vt">Vermont</option>
+		<option value="va">Virginia</option>
+		<option value="wa">Washington</option>
+		<option value="wv">West Virginia</option>
+		<option value="wi">Wisconsin</option>
+		<option value="wy">Wyoming</option>
+	</select>
+</div><br>
+</fieldset>
+
+<fieldset>
+<div>
+Please leave a description of the animal    (max 800 characters)<br>
+<textarea name="newAnimalDescription" id="newAnimalDescription" rows="8" cols="100">
+	
+</textarea>
+</div><br>
+<div>
+Upload a photo of the animal: <input type="file" name="newAnimalPhoto" id="newAnimalPhoto">	
+</div>
+</fieldset>
+
+<input type="submit" name="newAnimalSubmit" id="newAnimalSubmit"><br>
+</form>
