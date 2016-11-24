@@ -30,9 +30,7 @@
 					console.log("The response text: ");
 					console.log(req.responseText);
 					var resData = JSON.parse(req.response);
-					var index = resData.length-1;
-					var newElement = resData[index];
-					console.log(JSON.stringify(newElement));
+					console.log(resData);
 					//addRow(newElement);
 					
 				} else {
