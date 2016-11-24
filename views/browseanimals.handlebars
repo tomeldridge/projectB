@@ -40,14 +40,17 @@
 						//listItem.appendChild(aPic);
 
 						var aCity = document.createElement("div");
-						aCity.textContent = resData[i].description;
+						aCity.class="cityDiv";
+						aCity.textContent = resData[i].city;
 						listItem.appendChild(aCity);
 
 						var aState = document.createElement("div");
+						aState.class="stateDiv";
 						aState.textContent = resData[i].animalState;
 						listItem.appendChild(aState);
 
-						var aDescrip = document.createElement("div"); 
+						var aDescrip = document.createElement("div");
+						aDescrip.class="descriptionDiv"; 
 						aDescrip.textContent = resData[i].description;
 						listItem.appendChild(aDescrip);
 
