@@ -18,6 +18,7 @@
 <script type = "text/javascript">
 
 	document.getElementById('listSubmit').addEventListener('click', function(event){
+		var mysql = require('mysql');
 		var con = mysql.createConnection({
   					host  : 'localhost',
   					user  : 'root',
