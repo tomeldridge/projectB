@@ -1,1 +1,37 @@
 <link rel="stylesheet" type= "text/css" href="/stylesheets/browseanimals.css"/>
+<?php
+$dbhost = 'localhost';
+$dbuser = 'root';
+$dbpass = 'Password';
+$conn = mysql_connect($dbhost, $dbuser, $dbpass);
+if(! $conn )
+{
+  die('Could not connect: ' . mysql_error());
+}
+$sql = 'SELECT id, animalType, 
+               address, city, 
+               animalState, status
+        FROM animalInDistress';
+
+mysql_select_db('tables');
+$retval = mysql_query( $sql, $conn );
+if(! $retval )
+{
+  die('Could not get data: ' . mysql_error());
+}
+while($row = mysql_fetch_array($retval, MYSQL_ASSOC))
+{
+    echo <div> "Animal ID: {$row['id']}  <br> ".
+         "Animal Type: {$row['animalType']} <br> ".
+         "Animal Address: {$row['address']} <br> ".
+         "Animal City: {$row['city']} <br> ".
+         "Animal State: {$row['animalState']} <br> ".
+         "Animal Status: {$row['status']} <br> ".
+         "--------------------------------<br>"</div>;
+} 
+mysql_close($conn);
+?>
+
+<div>
+	
+</div>

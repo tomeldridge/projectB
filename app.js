@@ -18,7 +18,7 @@ con.connect(function(err){
   console.log('Connection Established To The DataBase');
 });
 
-//con.end(function(err){});
+con.end(function(err){});
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
