@@ -82,9 +82,7 @@ app.post('/populateAnimals',function(req,res,next){
   console.log('Connection Established To The DataBase');
 });
 
-
-  var q = 'SELECT '+ rBody.animalReq +' FROM animalInDistress'
-  con.query(q, function(err, rows, fields){
+  con.query('SELECT ? FROM animalInDistress', [rBody.animalReq], function(err, rows, fields){
     if(err){
     next(err);
     return;
