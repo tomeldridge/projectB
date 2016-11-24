@@ -83,8 +83,8 @@ app.post('/populateAnimals',function(req,res,next){
 });
 
 
-  
-  con.query('SELECT '+ rBody.animalReq +' FROM animalInDistress', function(err, rows, fields){
+  var q = 'SELECT '+ rBody.animalReq +' FROM animalInDistress'
+  con.query(q, function(err, rows, fields){
     if(err){
     next(err);
     return;
