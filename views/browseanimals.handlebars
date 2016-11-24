@@ -19,7 +19,7 @@ if(! $retval )
 {
   die('Could not get data: ' . mysql_error());
 }
-while($row = mysql_fetch_array($retval, MYSQL_ASSOC))
+while($row = mysql_fetch_assoc($retval))
 {
     echo <div> "Animal ID: {$row['id']}  <br> ".
          "Animal Type: {$row['animalType']} <br> ".
