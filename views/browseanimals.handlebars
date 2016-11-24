@@ -1,7 +1,7 @@
 <link rel="stylesheet" type= "text/css" href="/stylesheets/browseanimals.css"/>
 
 <div>
-<select id="animalsToView" value = "Submit">
+<select id="animalsToView">
 	<option value="Cat">Cat</option> 
 	<option value="Dog">Dog</option> 
 	<option value="Bird">Bird</option>
@@ -17,48 +17,84 @@
 
 <script type = "text/javascript">
 
-	document.getElementById('listSubmit').addEventListener('click', function(event){
-		var mysql = require('mysql');
-		var con = mysql.createConnection({
-  					host  : 'localhost',
-  					user  : 'root',
-  					password: 'Password',
-  					database: 'petConnectDB'
-					});
-		con.connect(function(err){
-  			if(err){
-    			console.log('Error Connecting To The DataBase!');
-    			return;
-  			}
-  			console.log('Connection Established To The DataBase');
-		});
-		var aType=document.getElementById('animalsToView').value;
-		con.query('SELECT ' + aType + ' FROM animalInDistress', function(err,row){
-			if(err) throw err;
 
-			for(var i = 0; i < row.length; i++){
-				var listItem = document.createElement("li");
+		document.getElementById('listSubmit').addEventListener('click', function(event){
+			var req = new XMLHttpRequest();
+			var payload = {};
+			payload.animalReq = document.getElementById('animalsToView').value;
+			req.open('POST', '/populateAnimalList', true);
+			req.setRequestHeader('Content-Type', 'application/json');
+			req.addEventListener('load',function(){
+				if(req.status >= 200 && req.status < 400){
 
-				var aPic = document.createElement("file");
-				aPic = row[i].photo;
-				listItem.appendChild(aPic);
+					console.log("The response text: ");
+					console.log(req.responseText);
+					var resData = JSON.parse(req.response);
+					var index = resData.length-1;
+					var newElement = resData[index];
+					console.log(JSON.stringify(newElement));
+					//addRow(newElement);
+					
+				} else {
+					console.log("Error in network request: " + req.statusText);
+		  
+				}
+				
+			});
+			req.send(JSON.stringify(payload));
+			event.preventDefault();
+			event.stopPropagation();
+			});
 
-				var aCity = document.createElement("div");
-				aCity.textContent = row[i].description;
-				listItem.appendChild(aCity);
 
-				var aState = document.createElement("div");
-				aState.textContent = row[i].animalState;
-				listItem.appendChild(aState);
 
-				var aDescrip = document.createElement("div"); 
-				aDescrip.textContent = row[i].description;
-				listItem.appendChild(aDescrip);
 
-				document.getElementById("animalList").appendChild(listItem);
-			};
-			
-		});});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				//var listItem = document.createElement("li");
+
+				//var aPic = document.createElement("file");
+				//aPic = row[i].photo;
+				//listItem.appendChild(aPic);
+
+				//var aCity = document.createElement("div");
+				//aCity.textContent = row[i].description;
+				//listItem.appendChild(aCity);
+
+				//var aState = document.createElement("div");
+				//aState.textContent = row[i].animalState;
+				//listItem.appendChild(aState);
+
+				//var aDescrip = document.createElement("div"); 
+				//aDescrip.textContent = row[i].description;
+				//listItem.appendChild(aDescrip);
+
+				//document.getElementById("animalList").appendChild(listItem);
 
 
 

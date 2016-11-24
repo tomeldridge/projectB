@@ -64,6 +64,23 @@ app.get('/viewanimal', function(req,res){
   res.render('viewanimal');
 });
 
+app.post('/populateAnimalList',function(req,res,next){ 
+
+  var rBody= req.body;
+  
+  pool.query('SELECT '+ rbody.animalReq +' FROM animalInDistress', function(err, rows, fields){
+    if(err){
+    next(err);
+    return;
+    }
+    var context = {};
+      context = JSON.stringify(rows);
+      res.send(context);
+  });
+   
+});
+
+
 //basic 404 page
 app.use(function(req,res){
   res.status(404);
