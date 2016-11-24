@@ -18,46 +18,50 @@ con.connect(function(err){
   console.log('Connection Established To The DataBase');
 });
 
-con.end(function(err){});
+//con.end(function(err){});
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 app.set('port', 80);
+app.use(express.static('public'));
 
-//just shows any incoming gets
-app.get('/get',function(req,res){
-  var qParams = [];
-  for (var p in req.query){
-    qParams.push({'name':p,'value':req.query[p]})
-  }
-  var context = {};
-  context.data = qParams;
-  res.render('getList', context);
-});
 
-//just shows any incoming posts
-app.post('/post', function(req,res){
-  var qParams = [];
-  for (var p in req.body){
-    qParams.push({'name':p,'value':req.body[p]})
-  }
-  console.log(qParams);
-  console.log(req.body);
-  var context = {};
-  context.data = qParams;
-  res.render('postList', context);
-});
 
-//basic home page
+
+
+
+
+
+//home page
 app.get('/', function(req,res){
   res.render('home');
 });
 
-//basic user form page
-app.get('/createNewUser', function(req,res){
-  res.render('createNewUser');
+//user signup form page
+app.get('/signup', function(req,res){
+  res.render('signup');
+});
+
+//user login page
+app.get('/login', function(req,res){
+  res.render('login');
+});
+
+//submit animal form page
+app.get('/submitanimal', function(req,res){
+  res.render('submitanimal');
+});
+
+//browse animals page
+app.get('/browseanimals', function(req,res){
+  res.render('browseanimals');
+});
+
+//view animal page
+app.get('/viewanimal', function(req,res){
+  res.render('viewanimal');
 });
 
 //basic 404 page
