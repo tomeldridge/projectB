@@ -32,6 +32,28 @@
 					var resData = JSON.parse(req.response);
 					console.log(resData);
 					//addRow(newElement);
+					for(var i = 0; i < resData.length; i++){
+						var listItem = document.createElement("li");
+
+						var aPic = document.createElement("file");
+						aPic = resData[i].photo;
+						listItem.appendChild(aPic);
+
+						var aCity = document.createElement("div");
+						aCity.textContent = resData[i].description;
+						listItem.appendChild(aCity);
+
+						var aState = document.createElement("div");
+						aState.textContent = resData[i].animalState;
+						listItem.appendChild(aState);
+
+						var aDescrip = document.createElement("div"); 
+						aDescrip.textContent = resData[i].description;
+						listItem.appendChild(aDescrip);
+
+						document.getElementById("animalList").appendChild(listItem);
+
+					}
 					
 				} else {
 					console.log("Error in network request: " + req.statusText);
@@ -44,55 +66,6 @@
 			event.stopPropagation();
 			});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				//var listItem = document.createElement("li");
-
-				//var aPic = document.createElement("file");
-				//aPic = row[i].photo;
-				//listItem.appendChild(aPic);
-
-				//var aCity = document.createElement("div");
-				//aCity.textContent = row[i].description;
-				//listItem.appendChild(aCity);
-
-				//var aState = document.createElement("div");
-				//aState.textContent = row[i].animalState;
-				//listItem.appendChild(aState);
-
-				//var aDescrip = document.createElement("div"); 
-				//aDescrip.textContent = row[i].description;
-				//listItem.appendChild(aDescrip);
-
-				//document.getElementById("animalList").appendChild(listItem);
 
 
 
