@@ -8,11 +8,11 @@ ul{
 	visibility: hidden;
 	width: 60%;
 	position: absolute;
-	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
-	margin: auto;  
+	margin: auto;
+	border: thin solid;  
 }
 
 #choice{
@@ -21,11 +21,11 @@ ul{
 	width: 30%;
 	position: absolute;
 	top: 0;
-	bottom: 0;
 	left: 0;
 	right: 0;
 	margin: auto; 
 	text-align: center;
+	border: thin solid;
 }
 
 #listSubmit{
