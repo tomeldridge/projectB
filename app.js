@@ -61,7 +61,6 @@ app.post('/signup', function(req,res){
   var context = {};
   con.query('INSERT INTO profile (fname,lname,city,profileState,phone,email,facebookURL,username,password,isTemp) VALUES (rBody.fName,rBody.lName,rBody.city,rBody.state,rBody.phone,rBody.email,"",rBody.userName,rBody.password,0)', function(err, rows, fields){
     if(err){
-      next(err);
       return;
     }
     context = "pass";
