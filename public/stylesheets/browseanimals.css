@@ -7,13 +7,29 @@ ul{
 	padding: 10px;
 	visibility: hidden;
 	width: 60%;
-	box-align: center; 
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;  
 }
 
 #choice{
 	background : green;
 	padding: 10px;
 	width: 30%;
-	box-align: center;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto; 
+	text-align: center;
+}
+
+#listSubmit{
+	background: grey;
+	color: green;
 
 }
