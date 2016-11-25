@@ -29,11 +29,11 @@ function getParameterByName(name, url) {
 }
 
 //document.getElementById('photo').textContent = getParameterByName('photo');
-document.getElementById('description').textContent = getParameterByName('description');
-document.getElementById('city').textContent = getParameterByName('city');
-document.getElementById('state').textContent = getParameterByName('animalState');
-document.getElementById('address').textContent = getParameterByName('address');
-document.getElementById('status').textContent = getParameterByName('status');
+document.getElementById('description').innerHTML = getParameterByName('description');
+document.getElementById('city').innerHTML = getParameterByName('city');
+document.getElementById('state').innerHTML = getParameterByName('animalState');
+document.getElementById('address').innerHTML = getParameterByName('address');
+document.getElementById('status').innerHTML = getParameterByName('status');
 
 
 document.getElementById('helpSubmit').addEventListener('click', function(event){
