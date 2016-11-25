@@ -57,7 +57,6 @@ app.post('/signupReq', function(req,res){
     console.log('Connection Established To The DataBase');
   });
   
-
   var context = {};
   con.query('INSERT INTO profile (fname,lname,city,profileState,phone,email,facebookURL,username,password,isTemp) VALUES (rBody.fName,rBody.lName,rBody.city,rBody.state,rBody.phone,rBody.email,"",rBody.userName,rBody.password,0)', function(err, rows, fields){
     if(err){
@@ -88,8 +87,35 @@ app.get('/browseanimals', function(req,res){
 
 //view animal page
 app.get('/viewanimal', function(req,res){
-  var rBody = req.body;
-  console.log(rBody);
+  var rBody = {};
+  rBody = JSON.parse(req.body);
+  console.log(rBody.animalReq);
+
+  var con = mysql.createConnection({
+  host  : 'localhost',
+  user  : 'root',
+  password: 'Password',
+  database: 'petConnectDB'
+  });
+  con.connect(function(err){
+    if(err){
+      console.log('Error Connecting To The DataBase!');
+      return;
+    }
+    console.log('Connection Established To The DataBase');
+  });
+
+  con.query('SELECT * FROM animalInDistress WHERE id=?', [rBody.animalReq], function(err, rows, fields){
+    if(err){
+      return;
+    }
+    var context = {};
+    context = JSON.stringify(rows);
+    res.send(context);
+  });
+
+  con.end(function(err){}); 
+
 
   res.render('viewanimal');
 });
