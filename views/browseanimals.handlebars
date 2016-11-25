@@ -35,6 +35,7 @@
 					for(var i = 0; i < resData.length; i++){
 						var listItem = document.createElement("li");
 						listItem.style.border="thin solid";
+						listItem.style.backgroundColor = "white";
 						listItem.class = "listInner";
 
 						//var aPic = document.createElement("file");
@@ -44,12 +45,14 @@
 						var aCity = document.createElement("div");
 						aCity.class="cityDiv";
 						aCity.style.border="thin solid";
+						aCity.style.backgroundColor = "white";
 						aCity.textContent = "Current Location: " + resData[i].city + ", " + resData[i].animalState;
 						listItem.appendChild(aCity);
 
 						var aDescrip = document.createElement("div");
 						aDescrip.class="descriptionDiv"; 
 						aDescrip.style.border="thin solid";
+						aDescrip.style.backgroundColor = "white";
 						aDescrip.textContent = "Description: " + resData[i].description;
 						listItem.appendChild(aDescrip);
 
@@ -58,6 +61,7 @@
 						form.class = "listForm";
 						form.method = "get";
 						form.style.border="thin solid";
+						form.style.backgroundColor = "white";
 						var button = document.createElement("button");
 						button.type = "submit";
 						button.class = "listButton";
@@ -69,7 +73,6 @@
 						form.appendChild(button);
 
 						listItem.appendChild(form);
-						listItem.appendChild(document.createElement("br"));
 						document.getElementById('animalList').appendChild(listItem);
 					}
 				}	
