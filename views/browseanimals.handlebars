@@ -1,6 +1,6 @@
 
 
-<div>
+<div id="choice">
 <select id="animalsToView">
 	<option value="Cat">Cat</option> 
 	<option value="Dog">Dog</option> 
@@ -48,12 +48,14 @@
 						var aCity = document.createElement("div");
 						aCity.class="cityDiv";
 						aCity.style.backgroundColor = "white";
+						aCity.style.marginLeft = "15px";
 						aCity.textContent = "Current Location: " + resData[i].city + ", " + resData[i].animalState;
 						listItem.appendChild(aCity);
 
 						var aDescrip = document.createElement("div");
 						aDescrip.class="descriptionDiv"; 
 						aDescrip.style.backgroundColor = "white";
+						aDescrip.style.marginLeft = "15px";
 						aDescrip.textContent = "Description: " + resData[i].description;
 						listItem.appendChild(aDescrip);
 
@@ -62,6 +64,7 @@
 						form.class = "listForm";
 						form.method = "get";
 						form.style.backgroundColor = "white";
+						form.style.marginLeft = "15px";
 						form.style.alignItems = "center";
 						form.style.padding = "0";
 						

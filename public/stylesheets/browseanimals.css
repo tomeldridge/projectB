@@ -6,6 +6,14 @@ ul{
 	background : blue;
 	padding: 10px;
 	visibility: hidden;
-	width: 60%; 
+	width: 60%;
+	align-self: center; 
 }
 
+#choice{
+	background : green;
+	padding: 10px;
+	width: 30%;
+	align-self: center;
+
+}
