@@ -32,6 +32,7 @@
 					var resData = JSON.parse(req.response);
 					console.log(resData);
 					//addRow(newElement);
+					document.getElementById("animalList").style.visibility = "visible";
 					for(var i = 0; i < resData.length; i++){
 						var listItem = document.createElement("li");
 						listItem.style.border="thin solid";
