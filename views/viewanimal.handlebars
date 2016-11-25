@@ -30,11 +30,18 @@ function getParameterByName(name, url) {
 
 window.addEventListener("onload", function(){
 	//document.getElementById('photo').textContent = getParameterByName('photo');
-	document.getElementById('description').innerText = getParameterByName('description');
-	document.getElementById('city').innerText = getParameterByName('city');
-	document.getElementById('state').innerText = getParameterByName('animalState');
-	document.getElementById('address').innerText = getParameterByName('address');
-	document.getElementById('status').innerText = getParameterByName('status');
+	var d = document.getElementById('description');
+	var d2 = getParameterByName('description');
+	console.log(d2);
+	d.innerText = d2;
+	document.getElementById('city')
+	.innerText = getParameterByName('city');
+	document.getElementById('state')
+	.innerText = getParameterByName('animalState');
+	document.getElementById('address')
+	.innerText = getParameterByName('address');
+	document.getElementById('status')
+	.innerText = getParameterByName('status');
 });
 
 
