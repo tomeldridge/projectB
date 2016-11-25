@@ -60,7 +60,7 @@ app.get('/browseanimals', function(req,res){
 });
 
 //view animal page
-app.post('/viewanimal', function(req,res){
+app.get('/viewanimal', function(req,res){
   var rBody = req.body;
   console.log(rBody);
 
