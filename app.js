@@ -87,10 +87,10 @@ app.get('/browseanimals', function(req,res){
 
 //view single animal page
 app.get('/viewanimal', function(req,res){
-  var rBody = req.query;
+  var rBody = req.query.anid;
 
   
-  console.log(rBody.anid);
+  console.log(rBody);
 
   var con = mysql.createConnection({
   host  : 'localhost',
@@ -106,13 +106,11 @@ app.get('/viewanimal', function(req,res){
     console.log('Connection Established To The DataBase');
   });
 
-  con.query('SELECT * FROM animalInDistress WHERE id=?', [rBody.animalReq], function(err, rows, fields){
+  con.query('SELECT * FROM animalInDistress WHERE id=?', [rBody], function(err, rows, fields){
     if(err){
       return;
     }
-    var context = {};
-    context = JSON.stringify(rows);
-    res.send(context);
+    console.log(rows);
   });
 
   con.end(function(err){}); 
