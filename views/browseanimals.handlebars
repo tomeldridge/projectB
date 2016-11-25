@@ -62,6 +62,7 @@
 						form.method = "get";
 						form.style.border="thin solid";
 						form.style.backgroundColor = "white";
+						form.style.alignItems = "center";
 						var button = document.createElement("button");
 						button.type = "submit";
 						button.class = "listButton";
@@ -70,6 +71,7 @@
 						button.id = resData[i].id;
 						button.value = resData[i].id;
 						button.formaction="/viewanimal";
+						button.style.color = "green";
 						form.appendChild(button);
 
 						listItem.appendChild(form);
