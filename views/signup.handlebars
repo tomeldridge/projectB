@@ -132,7 +132,7 @@ Animals you'd be willing to adopt:<br>
 			payload.userName = document.getElementById('newUserSystemName').value;
 			payload.password = document.getElementById('newUserPassword').value;
 
-			req.open('POST', '/signup', true);
+			req.open('POST', '/signupReq', true);
 			req.setRequestHeader('Content-Type', 'application/json');
 			req.addEventListener('load',function(){
 				if(req.status >= 200 && req.status < 400){

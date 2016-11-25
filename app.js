@@ -39,7 +39,7 @@ app.get('/signup', function(req,res){
 });
 
 //user user signup form handler
-app.post('/signup', function(req,res){
+app.post('/signupReq', function(req,res){
   var rBody = req.body;
   console.log(rBody);
 
@@ -64,13 +64,11 @@ app.post('/signup', function(req,res){
       return;
     }
     context = "pass";
-    res.send(context);
+    
   });
 
   con.end(function(err){});
-
-
-  res.render('signup');
+  res.send(context);
 });
 
 //user login page
