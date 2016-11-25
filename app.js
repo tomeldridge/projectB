@@ -87,7 +87,7 @@ app.get('/browseanimals', function(req,res){
 
 //view single animal page
 app.get('/viewanimal', function(req,res){
-  var rBody = req.query.anid;
+  var rBody = req.query.anId;
 
   
   console.log(rBody);
