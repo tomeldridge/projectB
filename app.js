@@ -63,7 +63,7 @@ app.post('/signupReq', function(req,res){
     if(err){
       return;
     }
-    context = "pass";
+    context.insert = "pass";
     
   });
 
