@@ -1,4 +1,5 @@
 <link rel="stylesheet" type= "text/css" href="/stylesheets/signup.css"/>
+<script src="signup_clientSide.js"></script>
 <form><br>
 
 <fieldset>
@@ -7,16 +8,16 @@ Please Enter Your Information<br>
 
 <hr>
 
-First Name: <input type="text" name="newUserFirstName"><br> 
+<input type="text" placeholder="First Name" name="newUserFirstName" id="newUserFirstName">
 
-Last Name: <input type="text" name="newUserLastName"><br>
+<input type="text" placeholder="Last Name" name="newUserLastName" id="newUserLastName"><br>
 
-Street Address: <input type="text" name="newUserStreetAddress"><br>
+<input type="text" placeholder="Street Address" name="newUserStreetAddress" id="newUserStreetAddress"><br>
 
-City: <input type="text" name="newUserCity">
+<input type="text" placeholder="City" name="newUserCity" id="newUserCity">
 
-State:
-   	<select id="stateSubmit">
+
+   	<select name="State" id="newUserState">
 		<option value="al">Alabama</option> 
 		<option value="ak">Alaska</option> 
 		<option value="az">Arizona</option>
@@ -68,19 +69,19 @@ State:
 		<option value="wv">West Virginia</option>
 		<option value="wi">Wisconsin</option>
 		<option value="wy">Wyoming</option>
-	</select><br>
+	</select>
 
-Zipcode: <input type="text" name="newUserZip"><br>	
+<input type="text" placeholder="Zipcode" name="newUserZip" id="newUserZip"><br><br>
 
-Phone Number: <input type="text" name="newUserPhone"><br>
+<input type="text" placeholder="Phone Number" name="newUserPhone" id="newUserPhone"><br>
 
-Email: <input type="text" name="newUserEmail"><br>
+<input type="text" placeholder="Email" name="newUserEmail" id="newUserEmail"><br><br>
 
-Desired User Name: <input type="text" name="newUserSystemName"><br>
+<input type="text" placeholder="Desired User Name" name="newUserSystemName" id="newUserSystemName"><br>
 
-Password: <input type="password" name="newUserPassword"><br>
+<input type="password" placeholder="Password" name="newUserPassword" id="newUserPassword"><br>
 
-Re-Enter Password: <input type="password" name="newUserPasswordVerifier"><br> 
+<input type="password" placeholder="Re-Enter Password" name="newUserPasswordVerifier" id="newUserPasswordVerifier"><br> 
 				
 </fieldset>
 <br>
@@ -88,27 +89,77 @@ Re-Enter Password: <input type="password" name="newUserPasswordVerifier"><br>
 <hr>
 Animals you'd be willing to host:<br>
 <hr>
-<input type="checkbox" value="dog">Dog</option><br>
-<input type="checkbox" value="cat">Cat</option><br>
-<input type="checkbox" value="bird">Bird</option><br>
-<input type="checkbox" value="horse">Horse</option><br>
+<input type="checkbox" value="dog" id="mayhostdog">Dog</option><br>
+<input type="checkbox" value="cat" id="mayhostcat">Cat</option><br>
+<input type="checkbox" value="bird" id="mayhostbird">Bird</option><br>
+<input type="checkbox" value="horse" id="mayhosthorse">Horse</option><br>
 <hr>
 Animals you'd be willing to help:<br>
 <hr>
-<input type="checkbox" value="dog">Dog</option><br>
-<input type="checkbox" value="cat">Cat</option><br>
-<input type="checkbox" value="bird">Bird</option><br>
-<input type="checkbox" value="horse">Horse</option><br>
+<input type="checkbox" value="dog" id="mayhelpdog">Dog</option><br>
+<input type="checkbox" value="cat" id="mayhelpcat">Cat</option><br>
+<input type="checkbox" value="bird" id="mayhelpbird">Bird</option><br>
+<input type="checkbox" value="horse" id="mayhelphorse">Horse</option><br>
 <hr>
 Animals you'd be willing to adopt:<br>
 <hr>
-<input type="checkbox" value="dog">Dog</option><br>
-<input type="checkbox" value="cat">Cat</option><br>
-<input type="checkbox" value="bird">Bird</option><br>
-<input type="checkbox" value="horse">Horse</option><br>
+<input type="checkbox" value="dog" id="mayadoptdog">Dog</option><br>
+<input type="checkbox" value="cat" id="mayadoptcat">Cat</option><br>
+<input type="checkbox" value="bird" id="mayadoptbird">Bird</option><br>
+<input type="checkbox" value="horse" id="mayadopthorse">Horse</option><br>
 
 </fieldset><br>
 
-<input type="submit" name="Submit Info"><br>
+<input type="submit" name="newUserSubmit" id="newUserSubmit"><br>
 
 </form>
+
+<script type = "text/javascript">
+
+
+		document.getElementById('newUserSubmit').addEventListener('click', function(event){
+			var req = new XMLHttpRequest();
+			var payload = {};
+			payload.fName = document.getElementById('newUserFirstName').value;
+			//document.getElementById('newUserFirstName').value=null;
+			payload.lName = document.getElementById('newUserLastName').value;
+			//document.getElementById('newUserLastName').value;
+			payload.street = document.getElementById('newUserStreetAddress').value;
+			payload.state = document.getElementById('newUserState').value;
+			payload.city = document.getElementById('newUserCity').value;
+			payload.zip = document.getElementById('newUserZip').value;
+			payload.phone = document.getElementById('newUserPhone').value;
+			payload.email = document.getElementById('newUserEmail').value;
+
+			//Need some checks on matching passwords
+			payload.userName = document.getElementById('newUserSystemName').value;
+			payload.password = document.getElementById('newUserPassword').value;
+
+			req.open('POST', '/signupReq', true);
+			req.setRequestHeader('Content-Type', 'application/json');
+			req.addEventListener('load',function(){
+				if(req.status >= 200 && req.status < 400){
+
+					console.log("The response text: ");
+					console.log(req.responseText);
+					var resData = req.response;
+					console.log(resData);
+					//addRow(newElement);
+					
+				}	
+				else{
+					console.log("Error in network request: " + req.statusText);
+				}
+			});
+
+			req.send(JSON.stringify(payload));
+			event.preventDefault();
+			event.stopPropagation();
+		});
+
+
+
+</script>
+
+
+
