@@ -89,33 +89,8 @@ app.get('/browseanimals', function(req,res){
 //view single animal page
 //************************
 app.get('/viewanimal', function(req,res){
-  var rBody = JSON.parse(req.query);
-  console.log(rBody);
-
-  var con = mysql.createConnection({
-  host  : 'localhost',
-  user  : 'root',
-  password: 'Password',
-  database: 'petConnectDB'
-  });
-  con.connect(function(err){
-    if(err){
-      console.log('Error Connecting To The DataBase!');
-      return;
-    }
-    console.log('Connection Established To The DataBase');
-  });
- 
-  con.query('SELECT * FROM animalInDistress WHERE id=?', [rBody.id], function(err, rows, fields){
-    if(err){
-      return;
-    }
-    console.log(rows);
-    //res.send(JSON.stringify(rows));
-  });
 
 
-  con.end(function(err){}); 
   res.render('viewanimal');
 });
 
