@@ -36,6 +36,8 @@
 						var listItem = document.createElement("li");
 						listItem.style.border="thin solid";
 						listItem.style.backgroundColor = "white";
+						listItem.style.padding = "3px";
+						listItem.style.marginLeft = "30px";
 						listItem.class = "listInner";
 
 						//var aPic = document.createElement("file");
@@ -44,14 +46,12 @@
 
 						var aCity = document.createElement("div");
 						aCity.class="cityDiv";
-						aCity.style.border="thin solid";
 						aCity.style.backgroundColor = "white";
 						aCity.textContent = "Current Location: " + resData[i].city + ", " + resData[i].animalState;
 						listItem.appendChild(aCity);
 
 						var aDescrip = document.createElement("div");
 						aDescrip.class="descriptionDiv"; 
-						aDescrip.style.border="thin solid";
 						aDescrip.style.backgroundColor = "white";
 						aDescrip.textContent = "Description: " + resData[i].description;
 						listItem.appendChild(aDescrip);
@@ -64,6 +64,7 @@
 						form.style.backgroundColor = "white";
 						form.style.alignItems = "center";
 						form.style.padding = "0";
+						
 						var button = document.createElement("button");
 						button.type = "submit";
 						button.class = "listButton";
@@ -75,12 +76,15 @@
 						button.style.color = "green";
 						button.style.backgroundColor = "lightgrey";
 						button.style.alignSelf = "center";
-						button.style.fontSize = "16px";
-						button.style.border = "2px solid green";
-						button.style.padding = "0";
+						button.style.fontSize = "12px";
+						button.style.border = "2px solid black";
 						form.appendChild(button);
 
-						listItem.appendChild(form);
+						var formCont = document.createElement("div");
+						formCont.style.alignItems = "center";
+						formCont.appendChild(form);
+
+						listItem.appendChild(formCont);
 						document.getElementById('animalList').appendChild(listItem);
 					}
 				}	

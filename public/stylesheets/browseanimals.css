@@ -2,3 +2,8 @@ body{
 	background-color : lightslategrey;
 }
 
+ul{
+	background : blue;
+	padding: 10px; 
+}
+
