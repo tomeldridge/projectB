@@ -44,19 +44,13 @@
 						var aCity = document.createElement("div");
 						aCity.class="cityDiv";
 						aCity.style.border="thin solid";
-						aCity.textContent = resData[i].city;
+						aCity.textContent = "Current Location: " + resData[i].city + ", " + resData[i].animalState;
 						listItem.appendChild(aCity);
-
-						var aState = document.createElement("div");
-						aState.class="stateDiv";
-						aState.style.border="thin solid";
-						aState.textContent = resData[i].animalState;
-						listItem.appendChild(aState);
 
 						var aDescrip = document.createElement("div");
 						aDescrip.class="descriptionDiv"; 
 						aDescrip.style.border="thin solid";
-						aDescrip.textContent = resData[i].description;
+						aDescrip.textContent = "Description: " + resData[i].description;
 						listItem.appendChild(aDescrip);
 
 						var form = document.createElement("form");
