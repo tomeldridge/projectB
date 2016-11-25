@@ -28,12 +28,15 @@ function getParameterByName(name, url) {
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
-//document.getElementById('photo').textContent = getParameterByName('photo');
-document.getElementById('description').innerHTML = getParameterByName('description');
-document.getElementById('city').innerHTML = getParameterByName('city');
-document.getElementById('state').innerHTML = getParameterByName('animalState');
-document.getElementById('address').innerHTML = getParameterByName('address');
-document.getElementById('status').innerHTML = getParameterByName('status');
+window.addEventListener("onload", function(){
+	//document.getElementById('photo').textContent = getParameterByName('photo');
+	document.getElementById('description').innerHTML = getParameterByName('description');
+	document.getElementById('city').innerHTML = getParameterByName('city');
+	document.getElementById('state').innerHTML = getParameterByName('animalState');
+	document.getElementById('address').innerHTML = getParameterByName('address');
+	document.getElementById('status').innerHTML = getParameterByName('status');
+});
+
 
 
 document.getElementById('helpSubmit').addEventListener('click', function(event){
