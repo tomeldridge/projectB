@@ -27,13 +27,14 @@ function getParameterByName(name, url) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
+var d2 = getParameterByName('description');
+console.log(d2);
 
 window.addEventListener("onload", function(){
 	//document.getElementById('photo').textContent = getParameterByName('photo');
 	var d = document.getElementById('description');
-	var d2 = getParameterByName('description');
-	console.log(d2);
-	d.innerText = d2;
+	
+	d.innerHTML = d2;
 	document.getElementById('city')
 	.innerText = getParameterByName('city');
 	document.getElementById('state')
