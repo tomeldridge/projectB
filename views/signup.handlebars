@@ -121,7 +121,9 @@ Animals you'd be willing to adopt:<br>
 			var req = new XMLHttpRequest();
 			var payload = {};
 			payload.fName = document.getElementById('newUserFirstName').value;
+			//document.getElementById('newUserFirstName').value=null;
 			payload.lName = document.getElementById('newUserLastName').value;
+			//document.getElementById('newUserLastName').value;
 			payload.street = document.getElementById('newUserStreetAddress').value;
 			payload.state = document.getElementById('newUserState').value;
 			payload.city = document.getElementById('newUserCity').value;

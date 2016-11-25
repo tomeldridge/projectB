@@ -68,7 +68,7 @@ app.post('/signupReq', function(req,res){
   });
 
   con.end(function(err){});
-  res.send(context);
+  res.send(JSON.stringify(context);
 });
 
 //user login page
