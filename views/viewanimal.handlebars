@@ -16,86 +16,98 @@
 
 <script type = "text/javascript">
 
+function getParameterByName(name, url) {
+    if (!url) {
+      url = window.location.href;
+    }
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
 
-		document.getElementById('helpSubmit').addEventListener('click', function(event){
-			var req = new XMLHttpRequest();
-			var payload = {};
-			payload.animalReq = document.getElementById('animalsToView').value;
-			req.open('POST', '/populateAnimals', true);
-			req.setRequestHeader('Content-Type', 'application/json');
-			req.addEventListener('load',function(){
-				if(req.status >= 200 && req.status < 400){
-
-					console.log("The response text: ");
-					console.log(req.responseText);
-					var resData = JSON.parse(req.response);
-					console.log(resData);
-					//addRow(newElement);
-					document.getElementById("animalList").style.visibility = "visible";
-
-				}	
-				else{
-					console.log("Error in network request: " + req.statusText);
-				}
-			});
-
-			req.send(JSON.stringify(payload));
-			event.preventDefault();
-			event.stopPropagation();
-		});
+//document.getElementById('photo').textContent = getParameterByName('photo');
+document.getElementById('description').textContent = getParameterByName('description');
+document.getElementById('city').textContent = getParameterByName('city');
+document.getElementById('state').textContent = getParameterByName('animalState');
+document.getElementById('address').textContent = getParameterByName('address');
+document.getElementById('status').textContent = getParameterByName('status');
 
 
-		document.getElementById('hostSubmit').addEventListener('click', function(event){
-			var req = new XMLHttpRequest();
-			var payload = {};
-			payload.animalReq = document.getElementById('animalsToView').value;
-			req.open('POST', '/populateAnimals', true);
-			req.setRequestHeader('Content-Type', 'application/json');
-			req.addEventListener('load',function(){
-				if(req.status >= 200 && req.status < 400){
+document.getElementById('helpSubmit').addEventListener('click', function(event){
+	var req = new XMLHttpRequest();
+	var payload = {};
+	payload.animalReq = document.getElementById('animalsToView').value;
+	req.open('POST', '/populateAnimals', true);
+	req.setRequestHeader('Content-Type', 'application/json');
+	req.addEventListener('load',function(){
+		if(req.status >= 200 && req.status < 400){
 
-					console.log("The response text: ");
-					console.log(req.responseText);
-					var resData = JSON.parse(req.response);
-					console.log(resData);
-					//addRow(newElement);
-					document.getElementById("animalList").style.visibility = "visible";
+			console.log("The response text: ");
+			console.log(req.responseText);
+			var resData = JSON.parse(req.response);
+			console.log(resData);
+		}	
+		else{
+			console.log("Error in network request: " + req.statusText);
+		}
+	});
 
-				}	
-				else{
-					console.log("Error in network request: " + req.statusText);
-				}
-			});
+	req.send(JSON.stringify(payload));
+	event.preventDefault();
+	event.stopPropagation();
+});
 
-			req.send(JSON.stringify(payload));
-			event.preventDefault();
-			event.stopPropagation();
-		});
 
-		document.getElementById('adoptSubmit').addEventListener('click', function(event){
-			var req = new XMLHttpRequest();
-			var payload = {};
-			payload.animalReq = document.getElementById('animalsToView').value;
-			req.open('POST', '/populateAnimals', true);
-			req.setRequestHeader('Content-Type', 'application/json');
-			req.addEventListener('load',function(){
-				if(req.status >= 200 && req.status < 400){
+document.getElementById('hostSubmit').addEventListener('click', function(event){
+	var req = new XMLHttpRequest();
+	var payload = {};
+	payload.animalReq = document.getElementById('animalsToView').value;
+	req.open('POST', '/populateAnimals', true);
+	req.setRequestHeader('Content-Type', 'application/json');
+	req.addEventListener('load',function(){
+		if(req.status >= 200 && req.status < 400){
+			console.log("The response text: ");
+			console.log(req.responseText);
+			var resData = JSON.parse(req.response);
+			console.log(resData);
+			//addRow(newElement);
+			document.getElementById("animalList").style.visibility = "visible";
+		}	
+		else{
+			console.log("Error in network request: " + req.statusText);
+		}
+	});
 
-					console.log("The response text: ");
-					console.log(req.responseText);
-					var resData = JSON.parse(req.response);
-					console.log(resData);
-					//addRow(newElement);
-					document.getElementById("animalList").style.visibility = "visible";
+	req.send(JSON.stringify(payload));
+	event.preventDefault();
+	event.stopPropagation();
+});
 
-				}	
-				else{
-					console.log("Error in network request: " + req.statusText);
-				}
-			});
+document.getElementById('adoptSubmit').addEventListener('click', function(event){
+	var req = new XMLHttpRequest();
+	var payload = {};
+	payload.animalReq = document.getElementById('animalsToView').value;
+	req.open('POST', '/populateAnimals', true);
+	req.setRequestHeader('Content-Type', 'application/json');
+	req.addEventListener('load',function(){
+		if(req.status >= 200 && req.status < 400){
+			console.log("The response text: ");
+			console.log(req.responseText);
+			var resData = JSON.parse(req.response);
+			console.log(resData);
+			//addRow(newElement);
+			document.getElementById("animalList").style.visibility = "visible";
+		}	
+		else{
+			console.log("Error in network request: " + req.statusText);
+		}
+	});
+	req.send(JSON.stringify(payload));
+	event.preventDefault();
+	event.stopPropagation();
+});
 
-			req.send(JSON.stringify(payload));
-			event.preventDefault();
-			event.stopPropagation();
-		});
 </script>

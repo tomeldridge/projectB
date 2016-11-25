@@ -111,7 +111,7 @@ app.get('/viewanimal', function(req,res){
       return;
     }
     console.log(rows);
-    res.send(JSON.stringify(rows));
+    //res.send(JSON.stringify(rows));
   });
 
 
