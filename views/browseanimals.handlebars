@@ -33,8 +33,8 @@
 					console.log(resData);
 					//addRow(newElement);
 					for(var i = 0; i < resData.length; i++){
-						var top = document.createElement("li");
 						var listItem = document.createElement("div");
+						listItem.class = "listInnerMainDiv";
 
 						//var aPic = document.createElement("file");
 						//aPic = resData[i].photo;
@@ -57,9 +57,11 @@
 
 						var form = document.createElement("form");
 						form.action = "/viewanimal";
+						form.class = "listForm";
 						form.method = "get";
 						var button = document.createElement("button");
 						button.type = "submit";
+						button.class = "listButton";
 						button.name = "anId";
 						button.textContent = "View Animal";
 						button.id = resData[i].id;
@@ -69,8 +71,7 @@
 
 
 						listItem.appendChild(form);
-						top.appendChild(listItem)
-						document.getElementById('animalList').appendChild(top);
+						document.getElementById('animalList').appendChild(listItem);
 					}
 				}	
 				else{

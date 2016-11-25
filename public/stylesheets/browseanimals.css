@@ -8,3 +8,31 @@ form{
 	border-color : darkslategrey;
 	border-style : ridge;
 }
+
+.animalList{
+	background-color : white;
+}
+
+.listInnerMainDiv{
+	background-color : white;
+}
+
+.cityDiv{
+	background-color : white;
+}
+
+.stateDiv{
+	background-color : white;
+}
+
+.descriptionDiv{
+	background-color : white;
+}
+
+.listForm{
+	background-color : white;
+}
+
+.listButton{
+
+}
