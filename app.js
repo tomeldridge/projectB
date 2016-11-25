@@ -85,12 +85,12 @@ app.get('/browseanimals', function(req,res){
   res.render('browseanimals');
 });
 
+//*************************
 //view single animal page
+//************************
 app.get('/viewanimal', function(req,res){
-  var rBody = req.query.anId;
-
-  
-  console.log(rBody);
+  var rBody = req.query;
+  //console.log(rBody);
 
   var con = mysql.createConnection({
   host  : 'localhost',
@@ -105,22 +105,23 @@ app.get('/viewanimal', function(req,res){
     }
     console.log('Connection Established To The DataBase');
   });
-
-  con.query('SELECT * FROM animalInDistress WHERE id=?', [rBody], function(err, rows, fields){
+ 
+  con.query('SELECT * FROM animalInDistress WHERE id=?', [rBody.id], function(err, rows, fields){
     if(err){
       return;
     }
     console.log(rows);
+    res.send(JSON.stringify(rows));
   });
 
+
   con.end(function(err){}); 
-
-
   res.render('viewanimal');
 });
 
-
+//*****************************
 //populates animal browse list
+//*****************************
 app.post('/populateAnimals',function(req,res,next){ 
 
   var rBody= req.body;
