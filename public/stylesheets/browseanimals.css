@@ -3,29 +3,40 @@ body{
 }
 
 .animalList{
-	color : white;
+	border-style : solid;
+	border-color : white;
+	border-width : 2px; 
 }
 
-.listInnerMainDiv{
-	border-style: thin;
-	color : white;
+.listInner{
+	border-style : solid;
+	border-color : white;
+	border-width : 2px;
 }
 
 .cityDiv{
-	color : white;
+	border-style : solid;
+	border-color : white;
+	border-width : 2px;
 }
 
 .stateDiv{
-	color : white;
+	border-style : solid;
+	border-color : white;
+	border-width : 2px;
 }
 
 .descriptionDiv{
-	color : white;
+	border-style : solid;
+	border-color : white;
+	border-width : 2px;
 }
 
 .listForm{
+	border-style : solid;
 	width : 20px;
-	color : white;
+	border-color : white;
+	border-width : 2px;
 }
 
 .listButton{
