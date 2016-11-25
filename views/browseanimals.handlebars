@@ -10,9 +10,9 @@
 </div>
 <input type="submit" name="listSubmit" id="listSubmit"><br>
 
-<div id="animalList">
+<ul id="animalList">
 	
-</div>
+</ul>
 
 
 <script type = "text/javascript">
@@ -33,8 +33,8 @@
 					console.log(resData);
 					//addRow(newElement);
 					for(var i = 0; i < resData.length; i++){
-						var listItem = document.createElement("div");
-						listItem.class = "listInnerMainDiv";
+						var listItem = document.createElement("li");
+						listItem.class = "listInner";
 
 						//var aPic = document.createElement("file");
 						//aPic = resData[i].photo;
