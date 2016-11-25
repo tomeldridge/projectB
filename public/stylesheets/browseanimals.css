@@ -7,8 +7,8 @@ ul{
 	padding: 10px;
 	visibility: hidden;
 	width: 60%;
-	position: absolute;
-	top:20;
+	position: relative;
+	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
