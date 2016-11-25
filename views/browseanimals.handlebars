@@ -33,6 +33,7 @@
 					console.log(resData);
 					//addRow(newElement);
 					for(var i = 0; i < resData.length; i++){
+						var top = document.createElement("li");
 						var listItem = document.createElement("div");
 
 						//var aPic = document.createElement("file");
@@ -68,7 +69,8 @@
 
 
 						listItem.appendChild(form);
-						document.getElementById('animalList').appendChild(listItem);
+						top.appendChild(listItem)
+						document.getElementById('animalList').appendChild(top);
 					}
 				}	
 				else{
