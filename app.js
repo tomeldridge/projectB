@@ -89,8 +89,8 @@ app.get('/browseanimals', function(req,res){
 //view single animal page
 //************************
 app.get('/viewanimal', function(req,res){
-  var rBody = req.query;
-  //console.log(rBody);
+  var rBody = JSON.parse(req.query);
+  console.log(rBody);
 
   var con = mysql.createConnection({
   host  : 'localhost',
