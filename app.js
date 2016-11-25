@@ -85,7 +85,7 @@ app.get('/browseanimals', function(req,res){
   res.render('browseanimals');
 });
 
-//view animal page
+//view single animal page
 app.get('/viewanimal', function(req,res){
   var rBody = {};
   rBody = JSON.parse(req.body);
@@ -120,6 +120,8 @@ app.get('/viewanimal', function(req,res){
   res.render('viewanimal');
 });
 
+
+//populates animal browse list
 app.post('/populateAnimals',function(req,res,next){ 
 
   var rBody= req.body;
