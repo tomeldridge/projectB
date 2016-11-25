@@ -5,6 +5,7 @@ body{
 ul{
 	background : blue;
 	padding: 10px;
-	visibility: hidden; 
+	visibility: hidden;
+	width: 60%; 
 }
 
