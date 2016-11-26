@@ -63,15 +63,56 @@ What type of animal are you looking for?
 						listItem.appendChild(aDescrip);
 
 						var form = document.createElement("form");
-						form.action = "viewanimal";
+						form.action = "/viewanimal";
 						form.method = "GET";
 
-						var data = document.createElement("input");
-						data.type = "hidden";
-						data.name = "info";
-						data.value = JSON.stringify(resData[i]);
-						form.appendChild(data);
+						var id = document.createElement("input");
+						id.type = "hidden";
+						id.name = "id";
+						id.value = resData[i].id;
+						form.appendChild(id);
 
+						var at = document.createElement("input");
+						at.type = "hidden";
+						at.name = "animalType";
+						at.value = resData[i].animalType;
+						form.appendChild(at);
+
+						var dx = document.createElement("input");
+						dx.type = "hidden";
+						dx.name = "description";
+						dx.value = resData[i].description;
+						form.appendChild(dx);
+
+						var ad = document.createElement("input");
+						ad.type = "hidden";
+						ad.name = "address";
+						ad.value = resData[i].address;
+						form.appendChild(ad);
+
+						var ct = document.createElement("input");
+						ct.type = "hidden";
+						ct.name = "city";
+						ct.value = resData[i].city;
+						form.appendChild(ct);
+
+						var as = document.createElement("input");
+						as.type = "hidden";
+						as.name = "animalState";
+						as.value = resData[i].animalState;
+						form.appendChild(as);
+
+						var fi = document.createElement("input");
+						fi.type = "hidden";
+						fi.name = "finderID";
+						fi.value = resData[i].finderID;
+						form.appendChild(fi);
+
+						var st = document.createElement("input");
+						st.type = "hidden";
+						st.name = "status";
+						st.value = resData[i].status;
+						form.appendChild(st);
 
 						var button = document.createElement("input");
 						button.type = "submit";
