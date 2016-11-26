@@ -88,9 +88,11 @@ app.get('/browseanimals', function(req,res){
 //*************************
 //view single animal page
 //************************
-app.get('/viewanimal', function(req,res){
+app.post('/viewanimal', function(req,res,next){
+  var rBody= JSON.parse(req.body);
+  console.log(rBody);
 
-
+  //res.send{};
   res.render('viewanimal');
 });
 
