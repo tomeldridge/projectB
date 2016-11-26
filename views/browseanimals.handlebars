@@ -76,9 +76,9 @@ What type of animal are you looking for?
 <script type = "text/javascript">
 
 		document.getElementById('listSubmit').addEventListener('click', function(event){
-			var previousNodes = document.getElementById("animalList");
-			while(previousNodes.firstChild){
-				previousNodes.removeChild(previousNodes.firstChild);
+			var previousList = document.getElementById("animalList");
+			while(previousList.hasChildNodes){
+				previousList.removeChild(previousList.firstChild);
 			}
 
 			var req = new XMLHttpRequest();
