@@ -4,8 +4,17 @@ client side js logic for login page
 document.addEventListener("DOMContentLoaded", function(proceed){
 	
 	var submitButton = document.getElementById("login");
-	submitButton.addEventListener("click", function(event){
+	submitButton.addEventListener("click", function(event)
+	{
 
+		//check if incorrect password message is on screen from previous login attempt and delete it
+		var oldMessage = document.getElementById("pwMessage");
+		if(oldMessage)
+		{
+			oldMessage.remove();
+		}
+		
+		
 		var req = new XMLHttpRequest();
 		var payload = {};
 		payload.uname = document.getElementById('uname').value;
@@ -21,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function(proceed){
 			if(req.status == 401){
 				var div = document.getElementById("loginForm");
 				var passwordMessage = document.createElement("h3");
-				
+				passwordMessage.id = "pwMessage";
 				passwordMessage.textContent = "Incorrect Username or Password";
 				passwordMessage.style.color = "red";
 				div.appendChild(passwordMessage);
@@ -98,4 +107,5 @@ document.addEventListener("DOMContentLoaded", function(proceed){
 		event.preventDefault();
 		event.stopPropagation();
 })});
+
 
