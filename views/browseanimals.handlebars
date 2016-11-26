@@ -69,8 +69,8 @@ What type of animal are you looking for?
 						var data = document.createElement("input");
 						data.type = "text";
 						data.name = "info";
-						data.value = resData[i];
-						data.visibility = "hidden";
+						data.value = JSON.stringify(resData[i]);
+						data.style.visibility = "hidden";
 						form.appendChild(data);
 
 
