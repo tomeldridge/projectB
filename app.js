@@ -38,7 +38,7 @@ app.get('/signup', function(req,res){
   res.render('signup');
 });
 
-//user user signup form handler
+//user signup form handler
 app.post('/signupReq', function(req,res){
   var rBody = req.body;
   console.log(rBody);
@@ -88,11 +88,9 @@ app.get('/browseanimals', function(req,res){
 //*************************
 //view single animal page
 //************************
-app.post('/viewanimal', function(req,res,next){
-  var rBody= JSON.parse(req.body);
-  console.log(rBody);
+app.get('/viewanimal', function(req,res){
 
-  //res.send{};
+
   res.render('viewanimal');
 });
 
@@ -123,8 +121,8 @@ app.post('/populateAnimals',function(req,res,next){
     return;
     }
     var context = {};
-      context = JSON.stringify(rows);
-      res.send(context);
+    context = JSON.stringify(rows);
+    res.send(context);
   });
 
   con.end(function(err){});  

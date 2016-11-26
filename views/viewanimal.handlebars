@@ -16,34 +16,6 @@
 
 <script type = "text/javascript">
 
-function getParameterByName(name, url) {
-    if (!url) {
-      url = window.location.href;
-    }
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
-}
-var d2 = getParameterByName('description');
-console.log(d2);
-
-window.addEventListener("onload", function(){
-	//document.getElementById('photo').textContent = getParameterByName('photo');
-	var d = document.getElementById('description');
-	
-	d.innerHTML = d2;
-	document.getElementById('city')
-	.innerText = getParameterByName('city');
-	document.getElementById('state')
-	.innerText = getParameterByName('animalState');
-	document.getElementById('address')
-	.innerText = getParameterByName('address');
-	document.getElementById('status')
-	.innerText = getParameterByName('status');
-});
 
 
 
