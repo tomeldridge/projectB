@@ -38,7 +38,7 @@ app.get('/signup', function(req,res){
   res.render('signup');
 });
 
-//user user signup form handler
+//user signup form handler
 app.post('/signupReq', function(req,res){
   var rBody = req.body;
   console.log(rBody);
@@ -57,7 +57,6 @@ app.post('/signupReq', function(req,res){
     console.log('Connection Established To The DataBase');
   });
   
-
   var context = {};
   con.query('INSERT INTO profile (fname,lname,city,profileState,phone,email,facebookURL,username,password,isTemp) VALUES (rBody.fName,rBody.lName,rBody.city,rBody.state,rBody.phone,rBody.email,"",rBody.userName,rBody.password,0)', function(err, rows, fields){
     if(err){
@@ -86,14 +85,18 @@ app.get('/browseanimals', function(req,res){
   res.render('browseanimals');
 });
 
-//view animal page
+//*************************
+//view single animal page
+//************************
 app.get('/viewanimal', function(req,res){
-  var rBody = req.body;
-  console.log(rBody);
+
 
   res.render('viewanimal');
 });
 
+//*****************************
+//populates animal browse list
+//*****************************
 app.post('/populateAnimals',function(req,res,next){ 
 
   var rBody= req.body;
@@ -112,14 +115,14 @@ app.post('/populateAnimals',function(req,res,next){
     console.log('Connection Established To The DataBase');
   });
 
-  con.query('SELECT * FROM animalInDistress WHERE animalType=?', [rBody.animalReq], function(err, rows, fields){
+  con.query('SELECT * FROM animalInDistress WHERE animalType=? AND animalState=?', [rBody.animalReq,rBody.stateReq], function(err, rows, fields){
     if(err){
     next(err);
     return;
     }
     var context = {};
-      context = JSON.stringify(rows);
-      res.send(context);
+    context = JSON.stringify(rows);
+    res.send(context);
   });
 
   con.end(function(err){});  
