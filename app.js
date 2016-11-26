@@ -115,7 +115,7 @@ app.post('/populateAnimals',function(req,res,next){
     console.log('Connection Established To The DataBase');
   });
 
-  con.query('SELECT * FROM animalInDistress WHERE animalType=? animalState=?', [rBody.animalReq,rBody.stateReq], function(err, rows, fields){
+  con.query('SELECT * FROM animalInDistress WHERE animalType=? AND animalState=?', [rBody.animalReq,rBody.stateReq], function(err, rows, fields){
     if(err){
     next(err);
     return;
