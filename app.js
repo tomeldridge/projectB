@@ -89,7 +89,7 @@ app.get('/browseanimals', function(req,res){
 //view single animal page
 //************************
 app.get('/viewanimal', function(req,res){
-	
+
 
   res.render('viewanimal');
 });
@@ -115,7 +115,7 @@ app.post('/populateAnimals',function(req,res,next){
     console.log('Connection Established To The DataBase');
   });
 
-  con.query('SELECT * FROM animalInDistress WHERE animalType=?', [rBody.animalReq], function(err, rows, fields){
+  con.query('SELECT * FROM animalInDistress WHERE animalType=? animalState=?', [rBody.animalReq,rBody.stateReq], function(err, rows, fields){
     if(err){
     next(err);
     return;

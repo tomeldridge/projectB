@@ -29,12 +29,11 @@ function getParameterByName(name, url) {
 }
 
 document.getElementById("description").innerHTML = getParameterByName("description");
-document.getElementById("city").innerHTML = getParameterByName("city") + getParameterByName("animalState");
-//document.getElementById("state").innerHTML = ;
+document.getElementById("city").innerHTML = getParameterByName("city") + ", " + getParameterByName("animalState");
 document.getElementById("address").innerHTML = getParameterByName("address");
 document.getElementById("status").innerHTML = getParameterByName("status");
 
-
+//BUTTONS NOT HOOKED UP
 document.getElementById('helpSubmit').addEventListener('click', function(event){
 	var req = new XMLHttpRequest();
 	var payload = {};
