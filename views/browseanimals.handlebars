@@ -77,9 +77,12 @@ What type of animal are you looking for?
 
 		document.getElementById('listSubmit').addEventListener('click', function(event){
 			var previousList = document.getElementById("animalList");
-			while(previousList.hasChildNodes){
-				previousList.removeChild(previousList.firstChild);
+			if(previousList.hasChildNodes()){
+				while(previousList.hasChildNodes()){
+					previousList.removeChild(previousList.firstChild);
+				}
 			}
+			
 
 			var req = new XMLHttpRequest();
 			var payload = {};
