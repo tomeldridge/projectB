@@ -36,27 +36,25 @@ document.addEventListener("DOMContentLoaded", function(proceed){
 		
 		
 		var req = new XMLHttpRequest();
-		req.open('POST', '/insert', true);
-		req.setRequestHeader('Content-Type', 'application/json');
+		req.open("GET", "/insert?fname=" + payload.fname + "&lname=" + payload.lname + "&address=" + payload.address + "&city=" + payload.city + "&state=" + payload.state + "&zip=" + payload.zip + "&number=" + payload.number + "&email=" + payload.email + "&uname=" + payload.uname + "&pw=" + payload.pw + "&hostDog=" + payload.hostDog + "&hostCat=" + payload.hostCat + "&hostBird=" + payload.hostBird + "&hostHorse=" + payload.hostHorse + "&helpDog=" + payload.helpDog + "&helpCat=" + payload.helpCat + "&helpBird=" + payload.helpBird + "&helpHorse=" + payload.helpHorse + "&adoptDog=" + payload.adoptDog + "&adoptCat=" + payload.adoptCat + "&adoptBird=" + payload.adoptBird + "&adoptHorse=" + payload.adoptHorse, true);
 		
+		req.addEventListener("load",function(){
+			if(req.status >= 200 && req.status < 400)
+			{
+				console.log("success");
+				var div = document.getElementById("signupForm");
+				var accountMessage = document.createElement("h3");
+				accountMessage.id = "accountMessage";
+				accountMessage.textContent = "Account Created!";
+				accountMessage.style.color = "red";
+				div.appendChild(accountMessage);
+			} 
 		
-			req.addEventListener('load',function(){
-				if(req.status >= 200 && req.status < 400)
-				{
-					console.log("success");
-					var div = document.getElementById("signupForm");
-					var accountMessage = document.createElement("h3");
-					accountMessage.id = "accountMessage";
-					accountMessage.textContent = "Account Created!";
-					accountMessage.style.color = "red";
-					div.appendChild(accountMessage);
-				} 
+			else {
+				console.log("Network Error: " + req.statusText);
+		  }});
 		
-				else {
-					console.log("Network Error: " + req.statusText);
-		 	}});
-		
-		req.send(JSON.stringify(payload));
+		req.send(null);
 		event.preventDefault();
 		
 })});
