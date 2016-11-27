@@ -268,7 +268,7 @@ app.get('/insert', function(req,res,next){
 	  con.end(function(err){}); 
 		
 	});
-
+	res.status(200).json({status:"ok"})
 
 });
 
