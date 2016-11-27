@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function(proceed){
 		
 		
 		var req = new XMLHttpRequest();
-		req.open("GET", "http://35.164.210.244:3000/insert?fname=" + payload.fname + "&lname=" + payload.lname + "&address=" + payload.address + "&city=" + payload.city + "&state=" + payload.state + "&zip=" + payload.zip + "&number=" + payload.number + "&email=" + payload.email + "&uname=" + payload.uname + "&pw=" + payload.pw + "&hostDog=" + payload.hostDog + "&hostCat=" + payload.hostCat + "&hostBird=" + payload.hostBird + "&hostHorse=" + payload.hostHorse + "&helpDog=" + payload.helpDog + "&helpCat=" + payload.helpCat + "&helpBird=" + payload.helpBird + "&helpHorse=" + payload.helpHorse + "&adoptDog=" + payload.adoptDog + "&adoptCat=" + payload.adoptCat + "&adoptBird=" + payload.adoptBird + "&adoptHorse=" + payload.adoptHorse, true);
+		req.open("GET", "/insert?fname=" + payload.fname + "&lname=" + payload.lname + "&address=" + payload.address + "&city=" + payload.city + "&state=" + payload.state + "&zip=" + payload.zip + "&number=" + payload.number + "&email=" + payload.email + "&uname=" + payload.uname + "&pw=" + payload.pw + "&hostDog=" + payload.hostDog + "&hostCat=" + payload.hostCat + "&hostBird=" + payload.hostBird + "&hostHorse=" + payload.hostHorse + "&helpDog=" + payload.helpDog + "&helpCat=" + payload.helpCat + "&helpBird=" + payload.helpBird + "&helpHorse=" + payload.helpHorse + "&adoptDog=" + payload.adoptDog + "&adoptCat=" + payload.adoptCat + "&adoptBird=" + payload.adoptBird + "&adoptHorse=" + payload.adoptHorse, true);
 		
 		req.addEventListener("load",function(){
 			if(req.status >= 200 && req.status < 400)
