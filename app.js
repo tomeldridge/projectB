@@ -102,8 +102,9 @@ app.post('/populateAnimals',function(req,res,next){
 //*****************************
 //create new profile (not a temp profile)
 //*****************************
-app.get('/insert', function(req,res,next){
+app.post('/insert', function(req,res,next){
 	
+	var rBody= req.body;
 	var con = mysql.createConnection({
 	  host  : 'localhost',
 	  user  : 'root',
@@ -123,8 +124,8 @@ app.get('/insert', function(req,res,next){
 	var newProfileId = null;
 	
  	console.log("creating new profile");
-	 con.query("INSERT INTO profile (`fname`, `lname`, `city`, `profileState`, `phone`, `email`, `facebookURL`, `username`, `password`, `isTemp`) VALUES (?,?,?,?,?,?,?,?,?,?)", [req.query.fname, req.query.lname, req.query.city, req.query.state, req.query.phone, req.query.email, 
-	 req.query.facebook, req.query.uname, req.query.pw, 0], function(err, result){
+	 con.query("INSERT INTO profile (`fname`, `lname`, `city`, `profileState`, `phone`, `email`, `facebookURL`, `username`, `password`, `isTemp`) VALUES (?,?,?,?,?,?,?,?,?,?)", [rBody.fname, rBody.lname, rBody.city, rBody.state, rBody.phone, rBody.email, 
+	 rBody.facebook, rBody.uname, rBody.pw, 0], function(err, result){
 		if(err){
 		  next(err);
 		  return;
@@ -134,7 +135,7 @@ app.get('/insert', function(req,res,next){
 		newProfileId = result.insertId;
 		
 		//if user selected to host a dog, add to willHost table with user ID variable
-		if(req.query.hostDog == "true")
+		if(rBody.hostDog == "true")
 		{
 		con.query("INSERT INTO willHost (`userID`, `animalType`) VALUES (?,?)", [newProfileId, "Dog"], function(err, result){
 		if(err){
@@ -145,7 +146,7 @@ app.get('/insert', function(req,res,next){
 		}	
 
 		//if user selected to host a cat, add to willHost table with user ID variable
-		if(req.query.hostCat == "true")
+		if(rBody.hostCat == "true")
 		{
 		con.query("INSERT INTO willHost (`userID`, `animalType`) VALUES (?,?)", [newProfileId, "Cat"], function(err, result){
 		if(err){
@@ -156,7 +157,7 @@ app.get('/insert', function(req,res,next){
 		}
 		
 		//if user selected to host a bird, add to willHost table with user ID variable
-		if(req.query.hostBird == "true")
+		if(rBody.hostBird == "true")
 		{
 		con.query("INSERT INTO willHost (`userID`, `animalType`) VALUES (?,?)", [newProfileId, "Bird"], function(err, result){
 		if(err){
@@ -167,7 +168,7 @@ app.get('/insert', function(req,res,next){
 		}
 
 		//if user selected to host a horse, add to willHost table with user ID variable
-		if(req.query.hostHorse == "true")
+		if(rBody.hostHorse == "true")
 		{
 		con.query("INSERT INTO willHost (`userID`, `animalType`) VALUES (?,?)", [newProfileId, "Horse"], function(err, result){
 		if(err){
@@ -178,7 +179,7 @@ app.get('/insert', function(req,res,next){
 		}		
 
 		//if user selected to help a dog, add to willhelp table with user ID variable
-		if(req.query.helpDog == "true")
+		if(rBody.helpDog == "true")
 		{
 		con.query("INSERT INTO willHelp (`userID`, `animalType`) VALUES (?,?)", [newProfileId, "Dog"], function(err, result){
 		if(err){
@@ -189,7 +190,7 @@ app.get('/insert', function(req,res,next){
 		}	
 
 		//if user selected to help a cat, add to willhelp table with user ID variable
-		if(req.query.helpCat == "true")
+		if(rBody.helpCat == "true")
 		{
 		con.query("INSERT INTO willHelp (`userID`, `animalType`) VALUES (?,?)", [newProfileId, "Cat"], function(err, result){
 		if(err){
@@ -200,7 +201,7 @@ app.get('/insert', function(req,res,next){
 		}
 		
 		//if user selected to help a bird, add to willhelp table with user ID variable
-		if(req.query.helpBird == "true")
+		if(rBody.helpBird == "true")
 		{
 		con.query("INSERT INTO willHelp (`userID`, `animalType`) VALUES (?,?)", [newProfileId, "Bird"], function(err, result){
 		if(err){
@@ -211,7 +212,7 @@ app.get('/insert', function(req,res,next){
 		}
 
 		//if user selected to help a horse, add to willhelp table with user ID variable
-		if(req.query.helpHorse == "true")
+		if(rBody.helpHorse == "true")
 		{
 		con.query("INSERT INTO willHelp (`userID`, `animalType`) VALUES (?,?)", [newProfileId, "Horse"], function(err, result){
 		if(err){
@@ -222,7 +223,7 @@ app.get('/insert', function(req,res,next){
 		}
 
 		//if user selected to Adopt a dog, add to willAdopt table with user ID variable
-		if(req.query.adoptDog == "true")
+		if(rBody.adoptDog == "true")
 		{
 		con.query("INSERT INTO willAdopt (`userID`, `animalType`) VALUES (?,?)", [newProfileId, "Dog"], function(err, result){
 		if(err){
@@ -233,7 +234,7 @@ app.get('/insert', function(req,res,next){
 		}	
 
 		//if user selected to Adopt a cat, add to willAdopt table with user ID variable
-		if(req.query.adoptCat == "true")
+		if(rBody.adoptCat == "true")
 		{
 		con.query("INSERT INTO willAdopt (`userID`, `animalType`) VALUES (?,?)", [newProfileId, "Cat"], function(err, result){
 		if(err){
@@ -244,7 +245,7 @@ app.get('/insert', function(req,res,next){
 		}
 		
 		//if user selected to Adopt a bird, add to willAdopt table with user ID variable
-		if(req.query.adoptBird == "true")
+		if(rBody.adoptBird == "true")
 		{
 		con.query("INSERT INTO willAdopt (`userID`, `animalType`) VALUES (?,?)", [newProfileId, "Bird"], function(err, result){
 		if(err){
@@ -255,7 +256,7 @@ app.get('/insert', function(req,res,next){
 		}
 
 		//if user selected to Adopt a horse, add to willAdopt table with user ID variable
-		if(req.query.adoptHorse == "true")
+		if(rBody.adoptHorse == "true")
 		{
 		con.query("INSERT INTO willAdopt (`userID`, `animalType`) VALUES (?,?)", [newProfileId, "Horse"], function(err, result){
 		if(err){
