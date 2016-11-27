@@ -15,5 +15,9 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.11.3",
     "mysql": "^2.8.0"
+  },
+  "devDependencies": {
+    "zombie": "5.0.5",
+    "mocha": "3.2.0"
   }
 }
