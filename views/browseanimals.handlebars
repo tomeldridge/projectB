@@ -1,7 +1,7 @@
 <link rel="stylesheet" type= "text/css" href="/stylesheets/browseanimals.css"/>
 
 <div id="choice">
-What type of animal are you looking for?
+Please select the type of animal you would like to view.
 <hr>
 <select id="animalsToView">
 	<option value="Cat">Cat</option> 
@@ -9,7 +9,9 @@ What type of animal are you looking for?
 	<option value="Bird">Bird</option>
 	<option value="Horse">Horse</optio>
 </select>
-
+<hr>
+Please select your location.
+<hr>
 <select name="State" id="animalToViewState">
 	<option value="al">Alabama</option> 
 	<option value="ak">Alaska</option> 
@@ -63,147 +65,160 @@ What type of animal are you looking for?
 	<option value="wi">Wisconsin</option>
 	<option value="wy">Wyoming</option>
 </select>
+<input type="submit" name="listSubmit" id="listSubmit"></div><br>
 
-<input type="submit" name="listSubmit" id="listSubmit">
-</div>
-<br>
-
-<ul id="animalList">
-	
-</ul>
+<ul id="animalList"></ul>
 
 
 <script type = "text/javascript">
 
-		document.getElementById('listSubmit').addEventListener('click', function(event){
-			var previousList = document.getElementById("animalList");
-			if(previousList.hasChildNodes()){
-				while(previousList.hasChildNodes()){
-					previousList.removeChild(previousList.firstChild);
-				}
+	//makes hidden inputs for each listed animals 'view animal' button
+	function makeHiddenInputs(elName, elVal){
+		x = document.createElement("input");
+		x.type = "hidden";
+		x.name = elName;
+		x.value = elVal;
+
+		return x;
+	}
+
+	document.getElementById('listSubmit').addEventListener('click', function(event){
+
+		//If the user hit the search for animals button again then remove all previous search results
+		var previousList = document.getElementById("animalList");
+		if(previousList.hasChildNodes()){
+			while(previousList.hasChildNodes()){
+				previousList.removeChild(previousList.firstChild);
 			}
+		}
 			
+		//async request to get animal info from the database based on the 
+		//users choice of 'animalType' and 'animalState'
+		var req = new XMLHttpRequest();
+		var payload = {};
+		payload.animalReq = document.getElementById('animalsToView').value;
+		payload.stateReq = document.getElementById('animalToViewState').value;
+		req.open('POST', '/populateAnimals', true);
+		req.setRequestHeader('Content-Type', 'application/json');
+		req.addEventListener('load',function(){
+			if(req.status >= 200 && req.status < 400){
 
-			var req = new XMLHttpRequest();
-			var payload = {};
-			payload.animalReq = document.getElementById('animalsToView').value;
-			payload.stateReq = document.getElementById('animalToViewState').value;
-			req.open('POST', '/populateAnimals', true);
-			req.setRequestHeader('Content-Type', 'application/json');
-			req.addEventListener('load',function(){
-				if(req.status >= 200 && req.status < 400){
+				//console.log("The response text: ");
+				//console.log(req.responseText);
+				var resData = JSON.parse(req.response);
+				//console.log(resData);
 
-					//console.log("The response text: ");
-					//console.log(req.responseText);
-					var resData = JSON.parse(req.response);
-					console.log(resData);
-					//addRow(newElement);
-					document.getElementById("animalList").style.visibility = "visible";
-					for(var i = 0; i < resData.length; i++){
-						var listItem = document.createElement("li");
-						listItem.style.border="thin solid";
-						listItem.style.backgroundColor = "white";
-						listItem.style.padding = "3px";
-						listItem.style.marginLeft = "50px";
-						listItem.class = "listInner";
+				//Set list to visible, then loop over the number of animal records returned 
+				//from mysql while building a list item for each animal record. 
+				document.getElementById("animalList").style.visibility = "visible";
+				for(var i = 0; i < resData.length; i++){
+					//the list item
+					var listItem = document.createElement("li");
+					listItem.style.border="thin solid";
+					listItem.style.backgroundColor = "white";
+					listItem.style.padding = "3px";
+					listItem.style.marginLeft = "50px";
+					listItem.class = "listInner";
 
-						//var aPic = document.createElement("file");
-						//aPic = resData[i].photo;
-						//listItem.appendChild(aPic);
+					//Not sure how to handle images yet
+					//var aPic = document.createElement("file");
+					//aPic = resData[i].photo;
+					//listItem.appendChild(aPic);
 
-						var aCity = document.createElement("div");
-						aCity.class="cityDiv";
-						aCity.style.backgroundColor = "white";
-						aCity.style.marginLeft = "15px";
-						aCity.textContent = "Current Location: " + resData[i].city + ", " + resData[i].animalState;
-						listItem.appendChild(aCity);
+					//Show the animals city and state
+					var aCity = document.createElement("div");
+					aCity.class="cityDiv";
+					aCity.style.backgroundColor = "white";
+					aCity.style.marginLeft = "15px";
+					aCity.textContent = "Current Location: " + resData[i].city + ", " + resData[i].animalState;
+					listItem.appendChild(aCity);
 
-						var aDescrip = document.createElement("div");
-						aDescrip.class="descriptionDiv"; 
-						aDescrip.style.backgroundColor = "white";
-						aDescrip.style.marginLeft = "15px";
-						aDescrip.textContent = "Description: " + resData[i].description;
-						listItem.appendChild(aDescrip);
+					//Show the animal description
+					var aDescrip = document.createElement("div");
+					aDescrip.class="descriptionDiv"; 
+					aDescrip.style.backgroundColor = "white";
+					aDescrip.style.marginLeft = "15px";
+					aDescrip.textContent = "Description: " + resData[i].description;
+					listItem.appendChild(aDescrip);
 
-						//form to view individual animal page
-						var form = document.createElement("form");
-						form.action = "/viewanimal";
-						form.method = "GET";
+					//form for linking to individual animals page
+					var form = document.createElement("form");
+					form.action = "/viewanimal";
+					form.method = "GET";
 
-						var id = document.createElement("input");
-						id.type = "hidden";
-						id.name = "id";
-						id.value = resData[i].id;
-						form.appendChild(id);
+					//Make all of the forms hidden inputs
+					var id = makeHiddenInputs("id", resData[i].id);
+					//id.type = "hidden";
+					//id.name = "id";
+					//id.value = resData[i].id;
+					form.appendChild(id);
 
-						var at = document.createElement("input");
-						at.type = "hidden";
-						at.name = "animalType";
-						at.value = resData[i].animalType;
-						form.appendChild(at);
+					var at = makeHiddenInputs("animalType", resData[i].animalType);
+					//at.type = "hidden";
+					//at.name = "animalType";
+					//at.value = resData[i].animalType;
+					form.appendChild(at);
 
-						var dx = document.createElement("input");
-						dx.type = "hidden";
-						dx.name = "description";
-						dx.value = resData[i].description;
-						form.appendChild(dx);
+					var dx = makeHiddenInputs("description", resData[i].description);
+					//dx.type = "hidden";
+					//dx.name = "description";
+					//dx.value = resData[i].description;
+					form.appendChild(dx);
 
-						var ad = document.createElement("input");
-						ad.type = "hidden";
-						ad.name = "address";
-						ad.value = resData[i].address;
-						form.appendChild(ad);
+					var ad = makeHiddenInputs("address", resData[i].address);
+					//ad.type = "hidden";
+					//ad.name = "address";
+					//ad.value = resData[i].address;
+					//form.appendChild(ad);
 
-						var ct = document.createElement("input");
-						ct.type = "hidden";
-						ct.name = "city";
-						ct.value = resData[i].city;
-						form.appendChild(ct);
+					var ct = makeHiddenInputs("city", resData[i].city);
+					//ct.type = "hidden";
+					//ct.name = "city";
+					//ct.value = resData[i].city;
+					form.appendChild(ct);
 
-						var as = document.createElement("input");
-						as.type = "hidden";
-						as.name = "animalState";
-						as.value = resData[i].animalState;
-						form.appendChild(as);
+					var as = makeHiddenInputs("animalState", resData[i].animalState);
+					//as.type = "hidden";
+					//as.name = "animalState";
+					//as.value = resData[i].animalState;
+					form.appendChild(as);
 
-						var fi = document.createElement("input");
-						fi.type = "hidden";
-						fi.name = "finderID";
-						fi.value = resData[i].finderID;
-						form.appendChild(fi);
+					var fi = makeHiddenInputs("finderID", resData[i].finderID);
+					//fi.type = "hidden";
+					//fi.name = "finderID";
+					//fi.value = resData[i].finderID;
+					form.appendChild(fi);
 
-						var st = document.createElement("input");
-						st.type = "hidden";
-						st.name = "status";
-						st.value = resData[i].status;
-						form.appendChild(st);
+					var st = makeHiddenInputs("status", resData[i].status);
+					//st.type = "hidden";
+					//st.name = "status";
+					//st.value = resData[i].status;
+					form.appendChild(st);
 
-						var button = document.createElement("input");
-						button.type = "submit";
-						button.class = "listButton";
-						button.textContent = "View Animal";
-						button.value = "Submit";					
-						button.style.color = "green";
-						button.style.backgroundColor = "lightgrey";
-						button.style.alignSelf = "center";
-						button.style.fontSize = "12px";
-						button.style.border = "1px solid black";
-						form.appendChild(button);
-						listItem.appendChild(form);
+					//Make the forms submit button then attach, button->form->listItem
+					var button = document.createElement("input");
+					button.type = "submit";
+					button.class = "listButton";
+					button.textContent = "View Animal";
+					button.value = "Submit";					
+					button.style.color = "green";
+					button.style.backgroundColor = "lightgrey";
+					button.style.alignSelf = "center";
+					button.style.fontSize = "12px";
+					button.style.border = "1px solid black";
+					form.appendChild(button);
+					listItem.appendChild(form);
 
-						document.getElementById('animalList').appendChild(listItem);
-					}
-				}	
-				else{
-					console.log("Error in network request: " + req.statusText);
+					document.getElementById('animalList').appendChild(listItem);
 				}
-			});
-
-			req.send(JSON.stringify(payload));
-			event.preventDefault();
-			event.stopPropagation();
+			}	
+			else{
+				console.log("Error in network request: " + req.statusText);
+			}
 		});
 
-
-
+		req.send(JSON.stringify(payload));
+		event.preventDefault();
+		event.stopPropagation();
+	});
 </script>
