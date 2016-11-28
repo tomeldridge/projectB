@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function(proceed){
 		
 		
 		var req = new XMLHttpRequest();
-		req.open("GET", "http://35.164.210.244:3000/insertanimal?animalType=" + payload.animalType + "&address=" + payload.address + "&city=" + payload.city + "&state=" + payload.state  + "&description=" + payload.description, true);
+		req.open("GET", "http://35.164.210.244:80/insertanimal?animalType=" + payload.animalType + "&address=" + payload.address + "&city=" + payload.city + "&state=" + payload.state  + "&description=" + payload.description, true);
 		
 		req.addEventListener("load",function(){
 			if(req.status >= 200 && req.status < 400){
