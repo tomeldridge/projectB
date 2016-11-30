@@ -366,6 +366,7 @@ app.post('/loginuser',function(req,res,next)
 			var context = {};
 			context = JSON.stringify(rows);
 			res.send(context);
+			console.log(context);
 		});
 	}
 		  
