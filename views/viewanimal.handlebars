@@ -47,7 +47,7 @@ document.getElementById('helpSubmit').addEventListener('click', function(event){
 
 			console.log("The response text: ");
 			console.log(req.responseText);
-			var resData = JSON.parse(req.response);
+			var resData = JSON.stringify(req.response);
 			document.getElementById('currenthost').innerHTML =resData;
 			console.log(resData);
 		}	
@@ -74,7 +74,7 @@ document.getElementById('hostSubmit').addEventListener('click', function(event){
 		if(req.status >= 200 && req.status < 400){
 			console.log("The response text: ");
 			console.log(req.responseText);
-			var resData = JSON.parse(req.response);
+			var resData = JSON.stringify(req.response);
 			console.log(resData);
 			document.getElementById('currenthost').innerHTML =resData;
 			
@@ -101,7 +101,7 @@ document.getElementById('adoptSubmit').addEventListener('click', function(event)
 		if(req.status >= 200 && req.status < 400){
 			console.log("The response text: ");
 			console.log(req.responseText);
-			var resData = JSON.parse(req.response);
+			var resData = JSON.stringify(req.response);
 			console.log(resData);
 			document.getElementById('currenthost').innerHTML =resData;
 		}	
