@@ -351,7 +351,7 @@ app.post('/loginuser',function(req,res,next)
 			return;
     	}
     	context.uid = rows[0].id;
-    	context.uname = rows[0].username;
+    	context.uname = rBody.uname;
     	context.pass = rows[0].password;
 	//check if pw is valid
 	if(rBody.pw == rows[0].password)
