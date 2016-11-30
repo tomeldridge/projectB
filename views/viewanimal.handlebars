@@ -84,7 +84,7 @@ document.getElementById('hostSubmit').addEventListener('click', function(event){
 		}
 	});
 
-	req.send(JSON.stringify(payload));
+	req.send(payload);
 	event.preventDefault();
 	event.stopPropagation();
 });
