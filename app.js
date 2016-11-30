@@ -345,14 +345,15 @@ app.post('/loginuser',function(req,res,next)
 	con.query('SELECT id, password FROM profile WHERE username=?', [rBody.uname], function(err, rows, fields)
 	{
    
-   if(err)
-	{
-		next(err);
-		return;
-    }
-    
+   		if(err)
+		{
+			next(err);
+			return;
+    	}
+    	console.log(rows);
+    	console.log(fields);
 	//check if pw is valid
-	if(rBody.pw == rows[0].password)
+	if(rBody.pw == rows[0].pw)
 	{
 		con.query('SELECT animalInDistress.* FROM animalInDistress JOIN (SELECT DISTINCT willHost.animalType AS animalType FROM willHost JOIN willHelp ON willHost.userID=willHelp.userID JOIN willAdopt ON willAdopt.userID=willHelp.userID WHERE willHost.userID=?) T1 ON T1.animalType=animalInDistress.animalType INNER JOIN (SELECT city FROM profile WHERE profile.id=?) T2 ON T2.city=animalInDistress.city', 
 		[rows[0].id, rows[0].id], function(err, rows, fields)
