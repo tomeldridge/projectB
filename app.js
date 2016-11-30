@@ -320,7 +320,8 @@ app.get('/insertanimal', function(req,res,next){
 app.post('/loginuser',function(req,res,next)
 { 
 	var context = {};
-	var rBody= req.body;
+	
+	var rBody= JSON.parse(req.body);
 
 	var con = mysql.createConnection({
 	host  : 'localhost',
