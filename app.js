@@ -342,7 +342,7 @@ app.post('/loginuser',function(req,res,next)
 
 
 //get id and password from mySQL that corresponds to the username that was entered
-	con.query('SELECT id, password FROM profile WHERE username=? AND password=?', [rBody.uname, rBody.upass], function(err, rows, fields)
+	con.query('SELECT id, password FROM profile WHERE username=? AND password=?', [rBody.uname, rBody.pw], function(err, rows, fields)
 	{
    
    		if(err)
