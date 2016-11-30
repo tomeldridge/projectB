@@ -39,7 +39,7 @@ document.getElementById("status").innerHTML = getParameterByName("status");
 document.getElementById('helpSubmit').addEventListener('click', function(event){
 	var req = new XMLHttpRequest();
 	var payload = {};
-	payload.animalID = getParameterByName("anId").value;
+	payload.animalID = getParameterByName("anId");
 	req.open('POST', '/helpanimal', true);
 	req.setRequestHeader('Content-Type', 'application/json');
 	req.addEventListener('load',function(){
@@ -65,9 +65,9 @@ document.getElementById('helpSubmit').addEventListener('click', function(event){
 document.getElementById('hostSubmit').addEventListener('click', function(event){
 	var req = new XMLHttpRequest();
 	var payload = {};
-	payload.animalID = getParameterByName("anId").value;
-	payload.uname = getParameterByName("uname").value;
-	payload.pw = getParameterByName("upass").value;
+	payload.animalID = getParameterByName("anId");
+	payload.uname = getParameterByName("uname");
+	payload.pw = getParameterByName("upass");
 	req.open('POST', '/hostanimal', true);
 	req.setRequestHeader('Content-Type', 'application/json');
 	req.addEventListener('load',function(){
@@ -92,9 +92,9 @@ document.getElementById('hostSubmit').addEventListener('click', function(event){
 document.getElementById('adoptSubmit').addEventListener('click', function(event){
 	var req = new XMLHttpRequest();
 	var payload = {};
-	payload.animalID = getParameterByName("anId").value;
-	payload.uname = getParameterByName("uname").value;
-	payload.pw = getParameterByName("upass").value;
+	payload.animalID = getParameterByName("anId");
+	payload.uname = getParameterByName("uname");
+	payload.pw = getParameterByName("upass");
 	req.open('POST', '/adoptanimal', true);
 	req.setRequestHeader('Content-Type', 'application/json');
 	req.addEventListener('load',function(){
