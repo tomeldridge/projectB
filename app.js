@@ -548,8 +548,8 @@ app.post('/helpanimal',function(req,res,next)
 			return;
 		}
 		console.log(rows);
-		var oldFinder = rows[0].finderID;
-		console.log("old finder " + rows[0].finderID)
+		var oldFinder = rows[0];
+		console.log("old finder " + rows[0])
 		
 		//get id corresponding to un and pw provided by hoster and verify password
 		con.query('SELECT * FROM profile WHERE id=?', [oldFinder], function(err, rows, fields)
