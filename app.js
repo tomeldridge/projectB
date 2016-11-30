@@ -435,7 +435,7 @@ app.post('/hostanimal',function(req,res,next)
 				return;
 			}
 			
-
+			console.log(rows[0]);
 			var newFinder = rows[0].id;
 			console.log("id");
 			console.log(rows[0].id);
