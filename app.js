@@ -427,7 +427,7 @@ app.post('/hostanimal',function(req,res,next)
 
 		
 		//get id corresponding to un and pw provided by hoster and verify password
-		con.query('SELECT id, password FROM profile WHERE username=?', [rBody.uname], function(err, rows, fields)
+		con.query('SELECT id FROM profile WHERE username=? AND password=?', [rBody.uname, rBody.pw], function(err, rows, fields)
 		{
 			if(err)
 			{
