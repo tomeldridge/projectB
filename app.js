@@ -521,7 +521,7 @@ app.post('/hostanimal',function(req,res,next)
 app.post('/helpanimal',function(req,res,next)
 { 
 
-	var rBody = JSON.parse(req.body);
+	var rBody = req.body;
 
 	var con = mysql.createConnection({
 	host  : 'localhost',
