@@ -547,9 +547,9 @@ app.post('/helpanimal',function(req,res,next)
 			next(err);
 			return;
 		}
-		
-		var oldFinder = rows;
-		console.log("old finder " + rows)
+		console.log(rows);
+		var oldFinder = rows[0].finderID;
+		console.log("old finder " + rows[0].finderID)
 		
 		//get id corresponding to un and pw provided by hoster and verify password
 		con.query('SELECT * FROM profile WHERE id=?', [oldFinder], function(err, rows, fields)
@@ -567,7 +567,7 @@ app.post('/helpanimal',function(req,res,next)
 				
 				//send contact info back to client
 				var context = {};
-				context = rows;
+				context = rows[];
 				res.send(JSON.stringify(context));
 			}	
 			
