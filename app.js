@@ -384,6 +384,304 @@ app.post('/loginuser',function(req,res,next)
 
 
 
+//*****************************
+//host animal: accepts payload.animalID, payload.uname, and payload.pw
+//updates finderID of animal to new host Id. deletes old finder profile if was temp account
+//returns context object with contact info of finder/host
+//*****************************
+app.post('/hostanimal',function(req,res,next)
+{ 
+
+	var rBody= req.body;
+
+	var con = mysql.createConnection({
+	host  : 'localhost',
+	user  : 'root',
+	password: 'Password',
+	database: 'petConnectDB'
+	});
+	con.connect(function(err)
+	{
+		if(err){
+			console.log('Error Connecting To The DataBase!');
+			return;
+		}
+	console.log('Connection Established To The DataBase');
+	});
+
+
+	//get existing FinderID of animal
+	con.query('SELECT finderID FROM animalInDistress WHERE id=?', [rBody.animalID], function(err, rows, fields)
+	{
+		if(err)
+		{
+			next(err);
+			return;
+		}
+		
+		var oldFinder = rows[0].finderID;
+
+		
+		//get id corresponding to un and pw provided by hoster and verify password
+		con.query('SELECT id, password FROM profile WHERE username=?', [rBody.uname], function(err, rows, fields)
+		{
+			if(err)
+			{
+				next(err);
+				return;
+			}
+			
+
+			var newFinder = rows[0].id;
+			console.log("id");
+			console.log(rows[0].id);
+			console.log(rows[0].password);
+			
+			//check if pw is valid
+			if(rBody.pw == rows[0].password)
+			{	
+				//update finderID to new user ID
+				con.query('UPDATE animalInDistress SET finderID=? WHERE id=?', [rows[0].id, rBody.animalID], function(err, rows, fields)
+				{
+					if(err)
+					{
+						next(err);
+						return;
+					}
+					
+					
+					else
+					{
+						//get old finder contact info and send in context to client, delete old finder if temp
+						con.query('SELECT * FROM profile WHERE id=?', [oldFinder], function(err, rows, fields)
+						{
+							console.log("host updated");
+							
+							if(err)
+							{
+								next(err);
+								return;
+							}
+							
+							else
+							{
+								console.log("Contact info returned");
+								
+								//check if temp profile
+								if(rows[0].isTemp == 1)
+								{
+									//delete temp profile
+									con.query('DELETE FROM profile WHERE id=?', [oldFinder], function(err, rows, fields)
+									{
+										if(err)
+										{
+											next(err);
+											return;
+										}
+										console.log("temp account deleted");
+									});
+								}
+								
+								//send contact info back to client
+								var context = {};
+								context = JSON.stringify(rows);
+								res.send(context);
+							}	
+							
+						});
+					}	
+					
+				});
+			}
+				  
+			else 
+			{
+				res.status(401).send({status:401, message: 'unauthorized', type:'internal'}); 
+				console.log("incorrect un pw combination");
+				return;	
+			}
+			
+		});
+
+	});	
+});
+
+
+
+
+
+//*****************************
+//help animal: accepts payload.animalID
+//returns context object with contact info of finder/host
+//*****************************
+app.post('/helpanimal',function(req,res,next)
+{ 
+
+	var rBody= req.body;
+
+	var con = mysql.createConnection({
+	host  : 'localhost',
+	user  : 'root',
+	password: 'Password',
+	database: 'petConnectDB'
+	});
+	con.connect(function(err)
+	{
+		if(err){
+			console.log('Error Connecting To The DataBase!');
+			return;
+		}
+	console.log('Connection Established To The DataBase');
+	});
+
+
+	//get existing FinderID of animal
+	con.query('SELECT finderID FROM animalInDistress WHERE id=?', [rBody.animalID], function(err, rows, fields)
+	{
+		if(err)
+		{
+			next(err);
+			return;
+		}
+		
+		var oldFinder = rows[0].finderID;
+		
+		//get id corresponding to un and pw provided by hoster and verify password
+		con.query('SELECT * FROM profile WHERE id=?', [oldFinder], function(err, rows, fields)
+		{
+			
+			if(err)
+			{
+				next(err);
+				return;
+			}
+			
+			else
+			{
+				console.log("Contact info returned");
+				
+				//send contact info back to client
+				var context = {};
+				context = JSON.stringify(rows);
+				res.send(context);
+			}	
+			
+		});
+	});
+});
+
+
+
+
+//*****************************
+//adopt animal: accepts payload.animalID, payload.uname, and payload.pw
+//deletes animal record (since its adopted and out of system now) deletes old finder profile if was temp account
+//returns context object with contact info of finder/host
+//*****************************
+app.post('/adoptanimal',function(req,res,next)
+{ 
+
+	var rBody= req.body;
+
+	var con = mysql.createConnection({
+	host  : 'localhost',
+	user  : 'root',
+	password: 'Password',
+	database: 'petConnectDB'
+	});
+	con.connect(function(err)
+	{
+		if(err){
+			console.log('Error Connecting To The DataBase!');
+			return;
+		}
+	console.log('Connection Established To The DataBase');
+	});
+
+
+	//get existing FinderID of animal
+	con.query('SELECT finderID FROM animalInDistress WHERE id=?', [rBody.animalID], function(err, rows, fields)
+	{
+		if(err)
+		{
+			next(err);
+			return;
+		}
+		
+		var oldFinder = rows[0].finderID;
+
+		
+		//get id corresponding to un and pw provided by hoster and verify password
+		con.query('SELECT id, password FROM profile WHERE username=?', [rBody.uname], function(err, rows, fields)
+		{
+			if(err)
+			{
+				next(err);
+				return;
+			}
+			
+		
+			//check if pw is valid
+			if(rBody.pw == rows[0].password)
+			{	
+				//DELETE animal record since its getting adopted
+				con.query('DELETE FROM animalInDistress WHERE id=?', [rBody.animalID], function(err, rows, fields)
+				{
+					if(err)
+					{
+						next(err);
+						return;
+					}
+					
+					
+					else
+					{
+						//get old finder contact info and send in context to client, delete old finder if temp
+						con.query('SELECT * FROM profile WHERE id=?', [oldFinder], function(err, rows, fields)
+						{
+							console.log("animal adopted");
+							
+							if(err)
+							{
+								next(err);
+								return;
+							}
+							
+							else
+							{
+								console.log("Contact info returned");
+																
+								//send contact info back to client
+								var context = {};
+								context = JSON.stringify(rows);
+								res.send(context);
+							}	
+							
+						});
+					}	
+					
+				});
+			}
+				  
+			else 
+			{
+				res.status(401).send({status:401, message: 'unauthorized', type:'internal'}); 
+				console.log("incorrect un pw combination");
+				return;	
+			}
+			
+		});
+
+	});	
+});
+
+
+
+
+
+
+
+
 //basic 404 page
 app.use(function(req,res){
   res.status(404);
