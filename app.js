@@ -521,7 +521,7 @@ app.post('/hostanimal',function(req,res,next)
 app.post('/helpanimal',function(req,res,next)
 { 
 
-	var rBody = req.body;
+	var rBody = JSON.parse(req.body);
 
 	var con = mysql.createConnection({
 	host  : 'localhost',
@@ -549,6 +549,7 @@ app.post('/helpanimal',function(req,res,next)
 		}
 		
 		var oldFinder = rows;
+		console.log("old finder " + rows)
 		
 		//get id corresponding to un and pw provided by hoster and verify password
 		con.query('SELECT * FROM profile WHERE id=?', [oldFinder], function(err, rows, fields)
