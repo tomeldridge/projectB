@@ -567,7 +567,7 @@ app.post('/helpanimal',function(req,res,next)
 				
 				//send contact info back to client
 				var context = {};
-				context = rows[];
+				context = rows[0];
 				res.send(JSON.stringify(context));
 			}	
 			
