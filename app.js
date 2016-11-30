@@ -488,8 +488,8 @@ app.post('/hostanimal',function(req,res,next)
 								
 								//send contact info back to client
 								var context = {};
-								context = JSON.stringify(rows);
-								res.send(context);
+								context = rows;
+								res.send(JSON.stringify(context));
 							}	
 							
 						});
@@ -567,8 +567,8 @@ app.post('/helpanimal',function(req,res,next)
 				
 				//send contact info back to client
 				var context = {};
-				context = JSON.stringify(rows);
-				res.send(context);
+				context = rows;
+				res.send(JSON.stringify(context));
 			}	
 			
 		});
@@ -658,8 +658,8 @@ app.post('/adoptanimal',function(req,res,next)
 																
 								//send contact info back to client
 								var context = {};
-								context = JSON.stringify(rows);
-								res.send(context);
+								context = rows;
+								res.send(JSON.stringify(context));
 							}	
 							
 						});
