@@ -319,7 +319,7 @@ app.get('/insertanimal', function(req,res,next){
 //*****************************
 app.post('/loginuser',function(req,res,next)
 { 
-
+	var context = {};
 	var rBody= req.body;
 
 	var con = mysql.createConnection({
@@ -345,12 +345,12 @@ app.post('/loginuser',function(req,res,next)
 	con.query('SELECT id, password FROM profile WHERE username=?', [rBody.uname], function(err, rows, fields)
 	{
    
-   if(err)
-	{
-		next(err);
-		return;
-    }
-    
+   		if(err)
+		{
+			next(err);
+			return;
+    	}
+    	context.uid = rows[0].id;
 	//check if pw is valid
 	if(rBody.pw == rows[0].password)
 	{
@@ -363,9 +363,10 @@ app.post('/loginuser',function(req,res,next)
 				return;
 			}
 		
-			var context = {};
-			context = JSON.stringify(rows);
-			res.send(context);
+			
+			context.animal = rows;
+
+			res.send(JSON.stringify(context));
 			console.log(context);
 		});
 	}

@@ -1,6 +1,15 @@
 /*******************************************************************
 client side js logic for login page
 ** ****************************************************************/
+	function makeHiddenInputs(elName, elVal){
+		x = document.createElement("input");
+		x.type = "hidden";
+		x.name = elName;
+		x.value = elVal;
+
+		return x;
+	}
+
 document.addEventListener("DOMContentLoaded", function(proceed){
 	
 	var submitButton = document.getElementById("login");
@@ -41,11 +50,12 @@ document.addEventListener("DOMContentLoaded", function(proceed){
 				console.log("The response text: ");
 				console.log(req.responseText);
 				var resData = JSON.parse(req.response);
-				console.log(resData);
+				console.log(resData.animal);
+				console.log(resData.uid);
 
 				
 				document.getElementById("animalList").style.visibility = "visible";
-				for(var i = 0; i < resData.length; i++){
+				for(var i = 0; i < resData.animal.length; i++){
 					var listItem = document.createElement("li");
 					listItem.style.border="thin solid";
 					listItem.style.backgroundColor = "white";
@@ -59,13 +69,13 @@ document.addEventListener("DOMContentLoaded", function(proceed){
 					aCity.class="cityDiv";
 					aCity.style.backgroundColor = "white";
 					aCity.style.marginLeft = "15px";
-					aCity.textContent = "Current Location: " + resData[i].city + ", " + resData[i].animalState;
+					aCity.textContent = "Current Location: " + resData.animal[i].city + ", " + resData.animal[i].animalState;
 					listItem.appendChild(aCity);
 					var aDescrip = document.createElement("div");
 					aDescrip.class="descriptionDiv"; 
 					aDescrip.style.backgroundColor = "white";
 					aDescrip.style.marginLeft = "15px";
-					aDescrip.textContent = "Description: " + resData[i].description;
+					aDescrip.textContent = "Description: " + resData.animal[i].description;
 					listItem.appendChild(aDescrip);
 					var form = document.createElement("form");
 					form.action = "/viewanimal";
@@ -76,13 +86,16 @@ document.addEventListener("DOMContentLoaded", function(proceed){
 					form.style.alignItems = "center";
 					form.style.padding = "0";
 					
+					var uid = makeHiddenInputs("uid",resData.uid);
+					form.appendChild(uid);
+
 					var button = document.createElement("button");
 					button.type = "submit";
 					button.class = "listButton";
 					button.name = "anId";
 					button.textContent = "View Animal";
-					button.id = resData[i].id;
-					button.value = resData[i].id;
+					button.id = resData.animal[i].id;
+					button.value = resData.animal[i].id;
 					button.formaction="/viewanimal";
 					button.style.color = "green";
 					button.style.backgroundColor = "lightgrey";
