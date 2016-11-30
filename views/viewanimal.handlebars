@@ -62,7 +62,7 @@ document.getElementById('helpSubmit').addEventListener('click', function(event){
 });
 
 
-document.getElementById('hostanimal').addEventListener('click', function(event){
+document.getElementById('hostSubmit').addEventListener('click', function(event){
 	var req = new XMLHttpRequest();
 	var payload = {};
 	payload.animalID = getParameterByName("anId").value;
@@ -89,7 +89,7 @@ document.getElementById('hostanimal').addEventListener('click', function(event){
 	event.stopPropagation();
 });
 
-document.getElementById('adoptanimal').addEventListener('click', function(event){
+document.getElementById('adoptSubmit').addEventListener('click', function(event){
 	var req = new XMLHttpRequest();
 	var payload = {};
 	payload.animalID = getParameterByName("anId").value;
