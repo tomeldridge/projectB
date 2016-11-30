@@ -268,7 +268,7 @@ app.get('/insert', function(req,res,next){
 	  con.end(function(err){}); 
 		
 	});
-	res.redirect("/browseanimals/" + newProfileId);
+	res.status(200).json({status:"ok"})
 
 });
 
@@ -342,13 +342,14 @@ app.post('/loginuser',function(req,res,next)
 
 
 //get id and password from mySQL that corresponds to the username that was entered
-	con.query('SELECT id, password FROM profile WHERE username=?', [rBody.uname], function(err, rows, fields){
+	con.query('SELECT id, password FROM profile WHERE username=?', [rBody.uname], function(err, rows, fields)
+	{
    
-   		if(err)
-		{
-			next(err);
-			return;
-    	}
+   if(err)
+	{
+		next(err);
+		return;
+    }
     
 	//check if pw is valid
 	if(rBody.pw == rows[0].password)
@@ -364,7 +365,7 @@ app.post('/loginuser',function(req,res,next)
 		
 			var context = {};
 			context = JSON.stringify(rows);
-			//res.send(context);
+			res.send(context);
 		});
 	}
 		  
@@ -377,7 +378,7 @@ app.post('/loginuser',function(req,res,next)
 	
 	con.end(function(err){}); 
 	});	
-	res.redirect("/browseanimals/" + rows[0].id);
+	
 });
 
 
