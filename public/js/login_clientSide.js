@@ -89,6 +89,27 @@ document.addEventListener("DOMContentLoaded", function(proceed){
 					var uid = makeHiddenInputs("uid",resData.uid);
 					form.appendChild(uid);
 
+					var uname = makeHiddenInputs("uname",resData.uname);
+					form.appendChild(uname);
+
+					var upass = makeHiddenInputs("uid",resData.upass);
+					form.appendChild(upass);
+
+					var des = makeHiddenInputs("description", resData.animal[i].description);
+					form.appendChild(des);
+
+					var c = makeHiddenInputs("city", resData.animal[i].city);
+					form.appendChild(c);
+
+					var s = makeHiddenInputs("animalState", resData.animal[i].animalState);
+					form.appendChild(s);
+
+					var ad = makeHiddenInputs("address", resData.animal[i].address);
+					form.appendChild(ad);
+
+					var stat = makeHiddenInputs("status", resData.animal[i].status);
+					form.appendChild(stat);
+
 					var button = document.createElement("button");
 					button.type = "submit";
 					button.class = "listButton";

@@ -351,6 +351,8 @@ app.post('/loginuser',function(req,res,next)
 			return;
     	}
     	context.uid = rows[0].id;
+    	context.uname = rows[0].username;
+    	context.pass = rows[0].password;
 	//check if pw is valid
 	if(rBody.pw == rows[0].password)
 	{
@@ -519,7 +521,7 @@ app.post('/hostanimal',function(req,res,next)
 app.post('/helpanimal',function(req,res,next)
 { 
 
-	var rBody= req.body;
+	var rBody=JSON.parse(req.body);
 
 	var con = mysql.createConnection({
 	host  : 'localhost',

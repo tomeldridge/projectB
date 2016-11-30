@@ -14,7 +14,7 @@
 </div>
 </div>
 
-
+<div id="currenthost"></div>>
 
 <script type = "text/javascript">
 
@@ -39,8 +39,8 @@ document.getElementById("status").innerHTML = getParameterByName("status");
 document.getElementById('helpSubmit').addEventListener('click', function(event){
 	var req = new XMLHttpRequest();
 	var payload = {};
-	payload.animalReq = document.getElementById('animalsToView').value;
-	req.open('POST', '/populateAnimals', true);
+	payload.animalID = getParameterByName("anId");
+	req.open('POST', '/helpanimal', true);
 	req.setRequestHeader('Content-Type', 'application/json');
 	req.addEventListener('load',function(){
 		if(req.status >= 200 && req.status < 400){
@@ -48,6 +48,7 @@ document.getElementById('helpSubmit').addEventListener('click', function(event){
 			console.log("The response text: ");
 			console.log(req.responseText);
 			var resData = JSON.parse(req.response);
+			document.getElementById('currenthost').innerHTML =resData;
 			console.log(resData);
 		}	
 		else{
@@ -61,11 +62,13 @@ document.getElementById('helpSubmit').addEventListener('click', function(event){
 });
 
 
-document.getElementById('hostSubmit').addEventListener('click', function(event){
+document.getElementById('hostanimal').addEventListener('click', function(event){
 	var req = new XMLHttpRequest();
 	var payload = {};
-	payload.animalReq = document.getElementById('animalsToView').value;
-	req.open('POST', '/populateAnimals', true);
+	payload.animalID = getParameterByName("anId");
+	payload.uname = getParameterByName("uname");
+	payload.pw = getParameterByName("upass");
+	req.open('POST', '/hostanimal', true);
 	req.setRequestHeader('Content-Type', 'application/json');
 	req.addEventListener('load',function(){
 		if(req.status >= 200 && req.status < 400){
@@ -73,8 +76,8 @@ document.getElementById('hostSubmit').addEventListener('click', function(event){
 			console.log(req.responseText);
 			var resData = JSON.parse(req.response);
 			console.log(resData);
-			//addRow(newElement);
-			document.getElementById("animalList").style.visibility = "visible";
+			document.getElementById('currenthost').innerHTML =resData;
+			
 		}	
 		else{
 			console.log("Error in network request: " + req.statusText);
@@ -86,11 +89,13 @@ document.getElementById('hostSubmit').addEventListener('click', function(event){
 	event.stopPropagation();
 });
 
-document.getElementById('adoptSubmit').addEventListener('click', function(event){
+document.getElementById('adoptanimal').addEventListener('click', function(event){
 	var req = new XMLHttpRequest();
 	var payload = {};
-	payload.animalReq = document.getElementById('animalsToView').value;
-	req.open('POST', '/populateAnimals', true);
+	payload.animalID = getParameterByName("anId");
+	payload.uname = getParameterByName("uname");
+	payload.pw = getParameterByName("upass");
+	req.open('POST', '/adoptanimal', true);
 	req.setRequestHeader('Content-Type', 'application/json');
 	req.addEventListener('load',function(){
 		if(req.status >= 200 && req.status < 400){
@@ -98,8 +103,7 @@ document.getElementById('adoptSubmit').addEventListener('click', function(event)
 			console.log(req.responseText);
 			var resData = JSON.parse(req.response);
 			console.log(resData);
-			//addRow(newElement);
-			document.getElementById("animalList").style.visibility = "visible";
+			document.getElementById('currenthost').innerHTML =resData;
 		}	
 		else{
 			console.log("Error in network request: " + req.statusText);
