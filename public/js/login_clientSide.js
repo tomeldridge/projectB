@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function(proceed){
 		var req = new XMLHttpRequest();
 		var payload = {};
 		payload.uname = document.getElementById('uname').value;
-		payload.pw = document.getElementById('pw').value;
+		payload.upass = document.getElementById('pw').value;
 		
 		req.open('POST', '/loginuser', true);
 		req.setRequestHeader('Content-Type', 'application/json');
@@ -89,8 +89,6 @@ document.addEventListener("DOMContentLoaded", function(proceed){
 					var uid = makeHiddenInputs("uid",resData.uid);
 					form.appendChild(uid);
 
-					var upass = makeHiddenInputs("upass",resData.upass);
-					form.appendChild(upass);
 
 					var des = makeHiddenInputs("description", resData.animal[i].description);
 					form.appendChild(des);
