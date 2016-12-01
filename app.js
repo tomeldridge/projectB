@@ -438,13 +438,13 @@ app.post('/hostanimal',function(req,res,next)
 			}
 			
 			console.log(rows);
-			var newFinder = rows.id;
+			var newFinder = rows[0].id;
 			console.log("id");
-			console.log(rows.id);
-			console.log(rows.password);
+			console.log(rows[0].id);
+			console.log(rows[0].password);
 			
 			//check if pw is valid
-			if(rBody.pw == rows.password)
+			if(rBody.pw == rows[0].password)
 			{	
 				//update finderID to new user ID
 				con.query('UPDATE animalInDistress SET finderID=? WHERE id=?', [rows[0].id, rBody.animalID], function(err, rows2, fields)
