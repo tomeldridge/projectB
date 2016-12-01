@@ -358,7 +358,7 @@ app.post('/loginuser',function(req,res,next)
 	if(rBody.upass == row[0].password)
 	{
 		con.query('SELECT animalInDistress.* FROM animalInDistress JOIN (SELECT DISTINCT willHost.animalType AS animalType FROM willHost JOIN willHelp ON willHost.userID=willHelp.userID JOIN willAdopt ON willAdopt.userID=willHelp.userID WHERE willHost.userID=?) T1 ON T1.animalType=animalInDistress.animalType INNER JOIN (SELECT city FROM profile WHERE profile.id=?) T2 ON T2.city=animalInDistress.city', 
-		[context.id, context.id], function(err, rows, fields)
+		[context.uid, context.uid], function(err, rows, fields)
 		{
 			if(err)
 			{
@@ -366,8 +366,8 @@ app.post('/loginuser',function(req,res,next)
 				return;
 			}
 		
-			console.log(rows[]);
-			context.animal = rows[];
+			console.log(rows);
+			context.animal = rows;
 
 			res.send(JSON.stringify(context));
 			console.log(context);
