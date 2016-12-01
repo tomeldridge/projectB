@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function(proceed){
 		});
 		
 		
-		req.send(payload);
+		req.send(JSON.stringify(payload));
 		event.preventDefault();
 		event.stopPropagation();
 })});
