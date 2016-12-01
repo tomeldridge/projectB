@@ -7,4 +7,13 @@ form{
 	border-radius : 5px; 
 	border-color : darkslategrey;
 	border-style : ridge;
+	margin :auto;
+}
+
+#headerwrap{
+	background-color : lightgrey;
+	border-radius : 5px; 
+	border-color : darkslategrey;
+	border-style : ridge;
+	margin :auto;
 }
