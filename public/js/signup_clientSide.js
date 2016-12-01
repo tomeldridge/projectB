@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function(proceed){
 				accountMessage.id = "accountMessage";
 				accountMessage.textContent = "Account Created!";
 				accountMessage.style.color = "red";
-				div.appendChild(accountMessage);
+				alert(accountMessage);
 				window.location="/login"
 			} 
 		
