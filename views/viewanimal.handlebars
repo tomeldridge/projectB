@@ -15,8 +15,7 @@
 </div>
 
 <div id="currenthost">
-<div id="chFname"></div>	
-<div id="chLname"></div>
+<div id="chname"></div>	
 <div id="chPhone"></div>
 <div id="chEmail"></div>
 </div>>
@@ -54,8 +53,7 @@ document.getElementById('helpSubmit').addEventListener('click', function(event){
 			//console.log("The response text: ");
 			//console.log(req.responseText);
 			var resData = JSON.parse(req.response);
-			document.getElementById('chFname').innerHTML =resData.fname;
-			document.getElementById('chLname').innerHTML =resData.lname;
+			document.getElementById('chname').innerHTML =resData.fname + " " + resData.lname;
 			document.getElementById('chPhone').innerHTML =resData.phone;
 			document.getElementById('chEmail').innerHTML =resData.email;
 			//console.log(resData);
@@ -86,8 +84,7 @@ document.getElementById('hostSubmit').addEventListener('click', function(event){
 			//console.log(req.responseText);
 			var resData = JSON.parse(req.response);
 			//console.log(resData);
-			document.getElementById('chFname').innerHTML =resData.fname;
-			document.getElementById('chLname').innerHTML =resData.lname;
+			document.getElementById('chname').innerHTML =resData.fname + " " + resData.lname;
 			document.getElementById('chPhone').innerHTML =resData.phone;
 			document.getElementById('chEmail').innerHTML =resData.email;
 			
@@ -117,8 +114,7 @@ document.getElementById('adoptSubmit').addEventListener('click', function(event)
 			//console.log(req.responseText);
 			var resData = JSON.parse(req.response);
 			//console.log(resData);
-			document.getElementById('chFname').innerHTML =resData.fname;
-			document.getElementById('chLname').innerHTML =resData.lname;
+			document.getElementById('chname').innerHTML =resData.fname + " " + resData.lname;
 			document.getElementById('chPhone').innerHTML =resData.phone;
 			document.getElementById('chEmail').innerHTML =resData.email;
 		}	
