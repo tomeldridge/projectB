@@ -14,7 +14,12 @@
 </div>
 </div>
 
-<div id="currenthost"></div>>
+<div id="currenthost">
+<div id="chFname"></div>	
+<div id="chLname"></div>
+<div id="chPhone"></div>
+<div id="chEmail"></div>
+</div>>
 
 <script type = "text/javascript">
 
@@ -49,7 +54,10 @@ document.getElementById('helpSubmit').addEventListener('click', function(event){
 			//console.log("The response text: ");
 			//console.log(req.responseText);
 			var resData = req.response;
-			document.getElementById('currenthost').innerHTML =resData;
+			document.getElementById('chFname').innerHTML =resData.fname;
+			document.getElementById('chLname').innerHTML =resData.lname;
+			document.getElementById('chPhone').innerHTML =resData.phone;
+			document.getElementById('chEmail').innerHTML =resData.email;
 			//console.log(resData);
 		}	
 		else{
@@ -78,7 +86,10 @@ document.getElementById('hostSubmit').addEventListener('click', function(event){
 			//console.log(req.responseText);
 			var resData = req.response;
 			//console.log(resData);
-			document.getElementById('currenthost').innerHTML =resData;
+			document.getElementById('chFname').innerHTML =resData.fname;
+			document.getElementById('chLname').innerHTML =resData.lname;
+			document.getElementById('chPhone').innerHTML =resData.phone;
+			document.getElementById('chEmail').innerHTML =resData.email;
 			
 		}	
 		else{
@@ -106,7 +117,10 @@ document.getElementById('adoptSubmit').addEventListener('click', function(event)
 			//console.log(req.responseText);
 			var resData = req.response;
 			//console.log(resData);
-			document.getElementById('currenthost').innerHTML =resData;
+			document.getElementById('chFname').innerHTML =resData.fname;
+			document.getElementById('chLname').innerHTML =resData.lname;
+			document.getElementById('chPhone').innerHTML =resData.phone;
+			document.getElementById('chEmail').innerHTML =resData.email;
 		}	
 		else{
 			console.log("Error in network request: " + req.statusText);
