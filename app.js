@@ -437,17 +437,17 @@ app.post('/hostanimal',function(req,res,next)
 				return;
 			}
 			
-			console.log(rows[0]);
-			var newFinder = rows[0].id;
+			console.log(rows);
+			var newFinder = rows.id;
 			console.log("id");
-			console.log(rows[0].id);
-			console.log(rows[0].password);
+			console.log(rows.id);
+			console.log(rows.password);
 			
 			//check if pw is valid
-			if(rBody.pw == rows[0].password)
+			if(rBody.pw == rows.password)
 			{	
 				//update finderID to new user ID
-				con.query('UPDATE animalInDistress SET finderID=? WHERE id=?', [rows[0].id, rBody.animalID], function(err, rows, fields)
+				con.query('UPDATE animalInDistress SET finderID=? WHERE id=?', [rows[0].id, rBody.animalID], function(err, rows2, fields)
 				{
 					if(err)
 					{
@@ -459,7 +459,7 @@ app.post('/hostanimal',function(req,res,next)
 					else
 					{
 						//get old finder contact info and send in context to client, delete old finder if temp
-						con.query('SELECT * FROM profile WHERE id=?', [oldFinder], function(err, rows, fields)
+						con.query('SELECT * FROM profile WHERE id=?', [oldFinder], function(err, rows3, fields)
 						{
 							console.log("host updated");
 							
@@ -474,10 +474,10 @@ app.post('/hostanimal',function(req,res,next)
 								console.log("Contact info returned");
 								
 								//check if temp profile
-								if(rows[0].isTemp == 1)
+								if(rows3[0].isTemp == 1)
 								{
 									//delete temp profile
-									con.query('DELETE FROM profile WHERE id=?', [oldFinder], function(err, rows, fields)
+									con.query('DELETE FROM profile WHERE id=?', [oldFinder], function(err, rows4, fields)
 									{
 										if(err)
 										{
@@ -490,7 +490,7 @@ app.post('/hostanimal',function(req,res,next)
 								
 								//send contact info back to client
 								var context = {};
-								context = rows;
+								context = rows3;
 								res.send(JSON.stringify(context));
 							}	
 							
