@@ -37,7 +37,7 @@ document.getElementById("status").innerHTML = getParameterByName("status");
 
 //BUTTONS NOT HOOKED UP
 document.getElementById('helpSubmit').addEventListener('click', function(event){
-	alert("By selcting help animal you are agreeing to help another user for the animal you have choosen.\nYou will be given contact information to the person who is now hosting the animal.\n It is your responsibility to contact this host and decide what kind of help you will offer.");
+	alert("By selcting help animal you are agreeing to help another user care for the animal you have choosen. You will be given contact information to the person who is now hosting the animal. It is your responsibility to contact this host and decide what kind of help you will offer or what kind of help the current host is in need of.");
 	var req = new XMLHttpRequest();
 	var payload = {};
 	payload.animalID = getParameterByName("anId");
@@ -64,7 +64,7 @@ document.getElementById('helpSubmit').addEventListener('click', function(event){
 
 
 document.getElementById('hostSubmit').addEventListener('click', function(event){
-	alert("By selcting host animal you are agreeing to temporarily care for the animal you have choosen.\nYou will be given contact information to the person who is now hosting the animal.\n It is your responsibility to contact this host and arrange for transfer of care.");
+	alert("By selcting host animal you are agreeing to temporarily care for the animal you have choosen. You will be given contact information to the person who is currently hosting the animal. It is your responsibility to contact this host and arrange for the transfer of care.");
 	var req = new XMLHttpRequest();
 	var payload = {};
 	payload.animalID = getParameterByName("anId");
@@ -92,7 +92,7 @@ document.getElementById('hostSubmit').addEventListener('click', function(event){
 });
 
 document.getElementById('adoptSubmit').addEventListener('click', function(event){
-	alert("By selcting adopt animal you are agreeing to permanently care for the animal you have choosen.\nYou will be given contact information to the person who is now hosting the animal.\n It is your responsibility to contact this host and arrange for transfer of care.");
+	alert("By selcting adopt animal you are agreeing to permanently care for the animal you have choosen. You will be given contact information to the person who is currently hosting the animal. It is your responsibility to contact this host and arrange for transfer of care.");
 	var req = new XMLHttpRequest();
 	var payload = {};
 	payload.animalID = getParameterByName("anId");
