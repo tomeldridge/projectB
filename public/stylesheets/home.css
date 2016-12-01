@@ -8,6 +8,8 @@ form{
 	border-color : darkslategrey;
 	border-style : ridge;
 	margin :auto;
+	width:25%;
+	text-align:center;
 }
 
 #headerwrap{
@@ -15,5 +17,24 @@ form{
 	border-radius : 5px; 
 	border-color : darkslategrey;
 	border-style : ridge;
-	margin :auto;
+	width :65%; 
+	margin:auto;
+
+
+}
+
+h1{
+	font-style:oblique;
+	margin:auto;
+	text-align:center;
+	width:inherit;
+
+
+}
+
+div{
+	clear:both;
+	float:none;
+	overflow:overlay;
+	
 }
