@@ -321,7 +321,7 @@ app.post('/loginuser',function(req,res,next)
 { 
 	var context = {};
 	
-	var rBody= JSON.parse(req.body);
+	var rBody= req.body;
 
 	var con = mysql.createConnection({
 	host  : 'localhost',
@@ -369,7 +369,7 @@ app.post('/loginuser',function(req,res,next)
 			
 			context.animal = rows;
 
-			res.send(JSON.stringify(context));
+			res.send(context);
 			console.log(context);
 		});
 	}

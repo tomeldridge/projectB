@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function(proceed){
 			if(req.status >= 200 && req.status < 400){
 				console.log("The response text: ");
 				console.log(req.responseText);
-				var resData = JSON.parse(req.response);
+				var resData = req.response;
 				console.log(resData.animal);
 				console.log(resData.uid);
 
@@ -132,7 +132,7 @@ document.addEventListener("DOMContentLoaded", function(proceed){
 		});
 		
 		
-		req.send(JSON.stringify(payload));
+		req.send(payload);
 		event.preventDefault();
 		event.stopPropagation();
 })});
