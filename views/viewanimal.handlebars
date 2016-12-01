@@ -53,7 +53,7 @@ document.getElementById('helpSubmit').addEventListener('click', function(event){
 
 			//console.log("The response text: ");
 			//console.log(req.responseText);
-			var resData = req.response;
+			var resData = JSON.parse(req.response);
 			document.getElementById('chFname').innerHTML =resData.fname;
 			document.getElementById('chLname').innerHTML =resData.lname;
 			document.getElementById('chPhone').innerHTML =resData.phone;
@@ -84,7 +84,7 @@ document.getElementById('hostSubmit').addEventListener('click', function(event){
 		if(req.status >= 200 && req.status < 400){
 			//console.log("The response text: ");
 			//console.log(req.responseText);
-			var resData = req.response;
+			var resData = JSON.parse(req.response);
 			//console.log(resData);
 			document.getElementById('chFname').innerHTML =resData.fname;
 			document.getElementById('chLname').innerHTML =resData.lname;
@@ -115,7 +115,7 @@ document.getElementById('adoptSubmit').addEventListener('click', function(event)
 		if(req.status >= 200 && req.status < 400){
 			//console.log("The response text: ");
 			//console.log(req.responseText);
-			var resData = req.response;
+			var resData = JSON.parse(req.response);
 			//console.log(resData);
 			document.getElementById('chFname').innerHTML =resData.fname;
 			document.getElementById('chLname').innerHTML =resData.lname;
