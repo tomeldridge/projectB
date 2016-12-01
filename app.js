@@ -397,7 +397,7 @@ app.post('/loginuser',function(req,res,next)
 app.post('/hostanimal',function(req,res,next)
 { 
 
-	var rBody= req.body;
+	var rBody= JSON.parse(req.body);
 	console.log("host REQ :" + rBody);
 
 	var con = mysql.createConnection({
