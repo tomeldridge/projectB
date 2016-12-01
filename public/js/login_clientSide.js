@@ -89,10 +89,10 @@ document.addEventListener("DOMContentLoaded", function(proceed){
 					var uid = makeHiddenInputs("uid",resData.uid);
 					form.appendChild(uid);
 
-					var uname = makeHiddenInputs("uid",resData.uname);
+					var uname = makeHiddenInputs("uname",resData.uname);
 					form.appendChild(uname);
 
-					var pass = makeHiddenInputs("uid",resData.pass);
+					var pass = makeHiddenInputs("upass",resData.pass);
 					form.appendChild(pass);
 
 					var des = makeHiddenInputs("description", resData.animal[i].description);
