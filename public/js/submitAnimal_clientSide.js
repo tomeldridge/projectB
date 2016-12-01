@@ -25,6 +25,8 @@ document.addEventListener("DOMContentLoaded", function(proceed){
 			if(req.status >= 200 && req.status < 400){
 				
 				console.log("success");
+				alert("Thank you.\n\nThe animal has been submitted to the database. You will now be sent back to the homepage.");
+				window.location="/";
 			} 
 		
 			else {
