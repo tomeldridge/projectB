@@ -45,11 +45,11 @@ document.getElementById('helpSubmit').addEventListener('click', function(event){
 	req.addEventListener('load',function(){
 		if(req.status >= 200 && req.status < 400){
 
-			console.log("The response text: ");
-			console.log(req.responseText);
+			//console.log("The response text: ");
+			//console.log(req.responseText);
 			var resData = req.response;
 			document.getElementById('currenthost').innerHTML =resData;
-			console.log(resData);
+			//console.log(resData);
 		}	
 		else{
 			console.log("Error in network request: " + req.statusText);
@@ -72,10 +72,10 @@ document.getElementById('hostSubmit').addEventListener('click', function(event){
 	req.setRequestHeader('Content-Type', 'application/json');
 	req.addEventListener('load',function(){
 		if(req.status >= 200 && req.status < 400){
-			console.log("The response text: ");
-			console.log(req.responseText);
+			//console.log("The response text: ");
+			//console.log(req.responseText);
 			var resData = req.response;
-			console.log(resData);
+			//console.log(resData);
 			document.getElementById('currenthost').innerHTML =resData;
 			
 		}	
@@ -99,10 +99,10 @@ document.getElementById('adoptSubmit').addEventListener('click', function(event)
 	req.setRequestHeader('Content-Type', 'application/json');
 	req.addEventListener('load',function(){
 		if(req.status >= 200 && req.status < 400){
-			console.log("The response text: ");
-			console.log(req.responseText);
-			var resData = JSON.parse(req.response);
-			console.log(resData);
+			//console.log("The response text: ");
+			//console.log(req.responseText);
+			var resData = req.response;
+			//console.log(resData);
 			document.getElementById('currenthost').innerHTML =resData;
 		}	
 		else{

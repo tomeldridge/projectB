@@ -338,8 +338,8 @@ app.post('/loginuser',function(req,res,next)
 	console.log('Connection Established To The DataBase');
 	});
 
-	console.log(rBody.uname);
-	console.log(rBody.upass);
+	//console.log(rBody.uname);
+	//console.log(rBody.upass);
 
 
 //get id and password from mySQL that corresponds to the username that was entered
@@ -366,11 +366,11 @@ app.post('/loginuser',function(req,res,next)
 				return;
 			}
 		
-			console.log(rows);
+			//console.log(rows);
 			context.animal = rows;
 
 			res.send(JSON.stringify(context));
-			console.log(context);
+			//console.log(context);
 		});
 	}
 		  
@@ -398,7 +398,7 @@ app.post('/hostanimal',function(req,res,next)
 { 
 
 	var rBody= req.body;
-	console.log("host REQ :" + rBody);
+	//console.log("host REQ :" + rBody);
 
 	var con = mysql.createConnection({
 	host  : 'localhost',
@@ -437,11 +437,11 @@ app.post('/hostanimal',function(req,res,next)
 				return;
 			}
 			
-			console.log(rows);
+			//console.log(rows);
 			var newFinder = rows[0].id;
-			console.log("id");
-			console.log(rows[0].id);
-			console.log(rows[0].password);
+			//console.log("id");
+			//console.log(rows[0].id);
+			//console.log(rows[0].password);
 			
 			//check if pw is valid
 			if(rBody.pw == rows[0].password)
@@ -549,9 +549,9 @@ app.post('/helpanimal',function(req,res,next)
 			next(err);
 			return;
 		}
-		console.log(rows);
+		//console.log(rows);
 		var oldFinder = rows[0].finderID;
-		console.log("old finder " + rows[0].finderID)
+		//console.log("old finder " + rows[0].finderID)
 			
 		//get id corresponding to un and pw provided by hoster and verify password
 		con.query('SELECT * FROM profile WHERE id=?', [oldFinder], function(err, rows, fields)

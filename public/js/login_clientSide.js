@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function(proceed){
 		
 		req.addEventListener('load',function(){
 			//if node returns incorret pw code
-			console.log(req.status);
+			//console.log(req.status);
 			if(req.status == 401){
 				var div = document.getElementById("loginForm");
 				var passwordMessage = document.createElement("h3");
@@ -47,11 +47,11 @@ document.addEventListener("DOMContentLoaded", function(proceed){
 			
 			
 			if(req.status >= 200 && req.status < 400){
-				console.log("The response text: ");
-				console.log(req.responseText);
+				//console.log("The response text: ");
+				//console.log(req.responseText);
 				var resData = JSON.parse(req.response);
-				console.log(resData.animal);
-				console.log(resData.uid);
+				//console.log(resData.animal);
+				//console.log(resData.uid);
 
 				
 				document.getElementById("animalList").style.visibility = "visible";
