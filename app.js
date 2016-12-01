@@ -416,7 +416,7 @@ app.post('/hostanimal',function(req,res,next)
 
 
 	//get existing FinderID of animal
-	con.query('SELECT finderID FROM animalInDistress WHERE id=?', [rBody.animalID], function(err, rows, fields)
+	con.query('SELECT finderID FROM animalInDistress WHERE id=?', [rBody.animalID], function(err, row, fields)
 	{
 		if(err)
 		{
@@ -424,7 +424,7 @@ app.post('/hostanimal',function(req,res,next)
 			return;
 		}
 		
-		var oldFinder = rows[0].finderID;
+		var oldFinder = row[0].finderID;
 
 		
 		//get id corresponding to un and pw provided by hoster and verify password
