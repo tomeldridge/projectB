@@ -366,8 +366,8 @@ app.post('/loginuser',function(req,res,next)
 				return;
 			}
 		
-			
-			context.animal = rows;
+			console.log(rows[]);
+			context.animal = rows[];
 
 			res.send(JSON.stringify(context));
 			console.log(context);
