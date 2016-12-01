@@ -47,7 +47,7 @@ document.getElementById('helpSubmit').addEventListener('click', function(event){
 
 			console.log("The response text: ");
 			console.log(req.responseText);
-			var resData = JSON.parse(req.response);
+			var resData = req.response;
 			document.getElementById('currenthost').innerHTML =resData;
 			console.log(resData);
 		}	
