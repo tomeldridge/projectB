@@ -74,7 +74,7 @@ document.getElementById('hostSubmit').addEventListener('click', function(event){
 		if(req.status >= 200 && req.status < 400){
 			console.log("The response text: ");
 			console.log(req.responseText);
-			var resData = JSON.stringify(req.response);
+			var resData = req.response;
 			console.log(resData);
 			document.getElementById('currenthost').innerHTML =resData;
 			
@@ -101,7 +101,7 @@ document.getElementById('adoptSubmit').addEventListener('click', function(event)
 		if(req.status >= 200 && req.status < 400){
 			console.log("The response text: ");
 			console.log(req.responseText);
-			var resData = JSON.stringify(req.response);
+			var resData = JSON.parse(req.response);
 			console.log(resData);
 			document.getElementById('currenthost').innerHTML =resData;
 		}	
@@ -109,7 +109,7 @@ document.getElementById('adoptSubmit').addEventListener('click', function(event)
 			console.log("Error in network request: " + req.statusText);
 		}
 	});
-	req.send(payload);
+	req.send(JSON.stringify(payload));
 	event.preventDefault();
 	event.stopPropagation();
 });
