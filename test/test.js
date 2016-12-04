@@ -1,9 +1,8 @@
 var assert = require('assert');
-//var app = require("../app.js");
 var Browser = require('zombie');
-
+var mysql = require('mysql');
 var request = require("request");
-var base_url = "http://localhost:3000/";
+var base_url = "http://ec2-35-164-210-244.us-west-2.compute.amazonaws.com/";
 
 describe("App server", function() {
   it("returns status code 200", function(done) {
@@ -19,7 +18,7 @@ describe("User interface tests", function() {
   describe("Homepage", function() {
     it("has correct title", function(done) {
       var browser = new Browser();
-      browser.visit("http://localhost:3000/").then(function() {
+      browser.visit(base_url).then(function() {
         var title = browser.text('title');
         assert.equal(title, 'PetConnect');
         done();
@@ -28,7 +27,7 @@ describe("User interface tests", function() {
 
     it("has correct h1", function(done) {
       var browser = new Browser();
-      browser.visit("http://localhost:3000/").then(function() {
+      browser.visit(base_url).then(function() {
         assert.equal(browser.text('h1'), 'Welcome To PetConnect');
         done();
       });
@@ -36,7 +35,7 @@ describe("User interface tests", function() {
 
     it("has all links", function(done) {
       var browser = new Browser();
-      browser.visit("http://localhost:3000/").then(function() {
+      browser.visit(base_url).then(function() {
         browser.assert.elements('form', 3);
         done();
       });
@@ -46,7 +45,7 @@ describe("User interface tests", function() {
   describe("Signup page", function() {
     it("has all inputs", function(done) {
       var browser = new Browser();
-      browser.visit("http://localhost:3000/signup").then(function() {
+      browser.visit(base_url + "signup").then(function() {
         browser.assert.elements('input', 23);
         done();
       });
@@ -56,7 +55,7 @@ describe("User interface tests", function() {
   describe("Login page", function() {
     it("has all inputs", function(done) {
       var browser = new Browser();
-      browser.visit("http://localhost:3000/login").then(function() {
+      browser.visit(base_url + "login").then(function() {
         browser.assert.elements('input', 3);
         done();
       });
@@ -66,7 +65,7 @@ describe("User interface tests", function() {
   describe("Browse animals page", function() {
     it("has all inputs", function(done) {
       var browser = new Browser();
-      browser.visit("http://localhost:3000/browseanimals").then(function() {
+      browser.visit(base_url + "browseanimals").then(function() {
         browser.assert.elements('input', 1);
         browser.assert.elements('select', 2);
         done();
@@ -77,7 +76,7 @@ describe("User interface tests", function() {
   describe("Submit animal page", function() {
     it("has all inputs", function(done) {
       var browser = new Browser();
-      browser.visit("http://localhost:3000/submitanimal").then(function() {
+      browser.visit(base_url + "submitanimal").then(function() {
         browser.assert.elements('input', 4);
         browser.assert.elements('select', 2);
         browser.assert.elements('textarea', 1);
@@ -89,8 +88,8 @@ describe("User interface tests", function() {
   describe("View animal page", function() {
     it("has all buttons", function(done) {
       var browser = new Browser();
-      browser.visit("http://localhost:3000/viewanimal").then(function() {
-        assert.equal(true, true);
+      browser.visit(base_url + "viewanimal").then(function() {
+        browser.assert.elements('input', 3);
         done();
       });
     });
@@ -100,127 +99,190 @@ describe("User interface tests", function() {
 
 describe("Database tests", function() {
   it("can create a willhelp account", function(done) {
-    request.get("/signupuser?userFirstName=John&userLastName=Doe", function(error, response, body) {
+    request.get(base_url + "insert?fname=John&lname=Doe&helpDog=true", function(error, response, body) {
       assert(response != undefined);
-      done();
+      var con = mysql.createConnection({
+          host  : 'localhost',
+          user  : 'root',
+          password: 'Password',
+          database: 'petConnectDB'
+      });
+
+      con.connect(function(err){
+        if(err){
+          console.log('Error Connecting To The DataBase!');
+          return;
+        }
+          console.log('Connection Established To The DataBase');
+      });
+
+
+      con.query("SELECT * FROM profile WHERE fname='John' AND lname='Doe'", function(err, result){
+        if(err) {
+          next(err);
+          return;
+        }
+        else {
+          assert(result.length > 0);
+        }
+      });
+
+      con.query("SELECT * FROM willHelp WHERE id=49", function(err, result){
+        if(err) {
+          next(err);
+          return;
+        }
+        else {
+          assert(result.length > 0);
+          done();
+        }
+      });
     });
   });
 
   it("can create a willhost account", function(done) {
-    request.get("/signupuser?userFirstName=John&userLastName=Doe", function(error, response, body) {
+    request.get(base_url + "insert?fname=John1&lname=Doe1&hostDog=true", function(error, response, body) {
       assert(response != undefined);
-      done();
+      var con = mysql.createConnection({
+          host  : 'localhost',
+          user  : 'root',
+          password: 'Password',
+          database: 'petConnectDB'
+      });
+
+      con.connect(function(err){
+        if(err){
+          console.log('Error Connecting To The DataBase!');
+          return;
+        }
+          console.log('Connection Established To The DataBase');
+      });
+
+
+      con.query("SELECT * FROM profile WHERE fname='John1' AND lname='Doe1'", function(err, result){
+        if(err) {
+          next(err);
+          return;
+        }
+        else {
+          assert(result.length > 0);
+        }
+      });
+
+      con.query("SELECT * FROM willHost WHERE id=55", function(err, result){
+        if(err) {
+          next(err);
+          return;
+        }
+        else {
+          assert(result.length > 0);
+          done();
+        }
+      });
     });
   });
 
   it("can create a willadopt account", function(done) {
-    request.get("/signupuser?userFirstName=John&userLastName=Doe", function(error, response, body) {
+    request.get(base_url + "insert?fname=John2&lname=Doe2&adoptDog=true", function(error, response, body) {
       assert(response != undefined);
-      done();
+      var con = mysql.createConnection({
+          host  : 'localhost',
+          user  : 'root',
+          password: 'Password',
+          database: 'petConnectDB'
+      });
+
+      con.connect(function(err){
+        if(err){
+          console.log('Error Connecting To The DataBase!');
+          return;
+        }
+          console.log('Connection Established To The DataBase');
+      });
+
+
+      con.query("SELECT * FROM profile WHERE fname='John2' AND lname='Doe2'", function(err, result){
+        if(err) {
+          next(err);
+          return;
+        }
+        else {
+          assert(result.length > 0);
+        }
+      });
+
+      con.query("SELECT * FROM willAdopt WHERE id=35", function(err, result){
+        if(err) {
+          next(err);
+          return;
+        }
+        else {
+          assert(result.length > 0);
+          done();
+        }
+      });
     });
   });
 
-  it("can login", function(done) {
-    request.get("/loginuser?uname=zzzben.jones@gmail.com&upass=Password", function(error, response, body) {
+  it("can find user", function(done) {
+    request.get(base_url + "insert?fname=John3&lname=Doe3", function(error, response, body) {
       assert(response != undefined);
-      done();
+      var con = mysql.createConnection({
+          host  : 'localhost',
+          user  : 'root',
+          password: 'Password',
+          database: 'petConnectDB'
+      });
+
+      con.connect(function(err){
+        if(err){
+          console.log('Error Connecting To The DataBase!');
+          return;
+        }
+          console.log('Connection Established To The DataBase');
+      });
+
+
+      con.query("SELECT * FROM profile WHERE fname='John3' AND lname='Doe3'", function(err, result){
+        if(err) {
+          next(err);
+          return;
+        }
+        else {
+          assert(result.length > 0);
+          done();
+        }
+      });
     });
   });
 
   it("can create animal", function(done) {
-    request.get("/insertanimal?submitAnimalType=Dog&newAnimalAddress=foo&newAnimalCity=foo&State=or&newAnimalDescription=%09foo%0D%0A&newAnimalSubmit=Submit", function(error, response, body) {
-      assert(response != undefined);
-      done();
-    });
-  });
+    request.get(base_url + "insertanimal?animalType=Dog&address=foo&city=foo&state=or&description=foo", function(error, response, body) {
+      var con = mysql.createConnection({
+          host  : 'localhost',
+          user  : 'root',
+          password: 'Password',
+          database: 'petConnectDB'
+      });
 
-  it("can search for animals", function(done) {
-    request.get("/populateAnimals", function(error, response, body) {
-      assert(response != undefined);
-      done();
-    });
-  });
-});
+      con.connect(function(err){
+        if(err){
+          console.log('Error Connecting To The DataBase!');
+          return;
+        }
+          console.log('Connection Established To The DataBase');
+      });
 
-
-describe("Acceptance tests", function() {
-  it("can create a willhelp account", function(done) {
-    var browser = new Browser();
-    browser.visit("http://localhost:3000/signup").then(function() {
-      assert(true == true);
-      done();
-    });
-  });
-
-  it("can create a willhost account", function(done) {
-    var browser = new Browser();
-    browser.visit("http://localhost:3000/signup").then(function() {
-      assert(true == true);
-      done();
-    });
-  });
-
-  it("can create a willadopt account", function(done) {
-    var browser = new Browser();
-    browser.visit("http://localhost:3000/signup").then(function() {
-      assert(true == true);
-      done();
-    });
-  });
-
-  it("can login", function(done) {
-    var browser = new Browser();
-    browser.visit("http://localhost:3000/signup").then(function() {
-      assert(true == true);
-      done();
-    });
-  });
-
-  it("can create animal", function(done) {
-    var browser = new Browser();
-    browser.visit("http://localhost:3000/submitanimal").then(function() {
-      assert(true == true);
-      done();
-    });
-  });
-
-  it("can search for animals", function(done) {
-    var browser = new Browser();
-    browser.visit("http://localhost:3000/browseanimals").then(function() {
-      assert(true == true);
-      done();
-    });
-  });
-
-  it("can click result and view animal", function(done) {
-    var browser = new Browser();
-    browser.visit("http://localhost:3000/viewanimal").then(function() {
-      assert(true == true);
-      done();
-    });
-  });
-
-  it("can adopt animal", function(done) {
-    var browser = new Browser();
-    browser.visit("http://localhost:3000/viewanimal").then(function() {
-      assert(true == true);
-      done();
-    });
-  });
-
-  it("can host animal", function(done) {
-    var browser = new Browser();
-    browser.visit("http://localhost:3000/viewanimal").then(function() {
-      assert(true == true);
-      done();
-    });
-  });
-
-  it("can help animal", function(done) {
-    var browser = new Browser();
-    browser.visit("http://localhost:3000/viewanimal").then(function() {
-      assert(true == true);
-      done();
+      con.query("SELECT * FROM animalInDistress WHERE description='foo'", function(err, result){
+        if(err) {
+          next(err);
+          return;
+        }
+        else {
+          assert(result.length > 0);
+          done();
+        }
+      });
     });
   });
 });
