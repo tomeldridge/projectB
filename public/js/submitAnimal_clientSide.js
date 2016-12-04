@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function(proceed){
 		  }});
 		
 		req.send(null);
-		event.preventDefault();
+		//event.preventDefault();
 		
 })});
 
